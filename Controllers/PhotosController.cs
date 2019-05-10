@@ -24,36 +24,75 @@ namespace luciadominguez.web.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Photo>> GetAsync(Guid id)
         {
-            // Fetch from database
-            Photo photo = await _dbContext.Photos
+            // Recoger foto de la base de datos dependiendo de la
+            // ID proporcionada.
+            Photo result = await _dbContext.Photos
                 .Include(x => x.PhotoTags)
-                .FirstOrDefaultAsync(x => x.Id.Equals(id));
+                .FirstOrDefaultAsync(photo => photo.Id.Equals(id));
 
-            // Check if exists
-            if (photo is null)
+            // Comprobar si hay resultado
+            if (result is null)
             {
                 return NotFound();
             }
 
-            // Return json-encoded photo object
-            return Ok(photo);
+            // Devolver el objeto foto
+            return Ok(result);
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync(Photo photo)
+        public async Task<ActionResult> PostAsync(Photo model)
         {
-            // If album already exists
-            if (_dbContext.Photos.Any(x => x.Id.Equals(photo.Id)))
+            // Comprobar que la foto no exista ya
+            if (_dbContext.Photos.Any(photo => photo.Id.Equals(model.Id)))
             {
                 return Conflict();
             }
 
-            // Add new photo
-            await _dbContext.Photos.AddAsync(photo);
+            // Añadir nueva foto a la base de datos
+            await _dbContext.Photos.AddAsync(model);
             await _dbContext.SaveChangesAsync();
 
-            // Return route to new photo
-            return CreatedAtRoute("{id}", photo.Id);
+            // Devolver como respuesta la nueva ruta para poder
+            // recoger la foto pasandole la ID
+            return CreatedAtRoute("{id}", model.Id);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> PutAsync(Photo model)
+        {
+            // Comprobar que la foto no exista ya
+            if (!_dbContext.Photos.Any(photo => photo.Id.Equals(model.Id)))
+            {
+                return NotFound();
+            }
+
+            _dbContext.Photos.Update(model);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteAsync(Guid id)
+        {
+            // Recoger foto de la base de datos dependiendo de la
+            // ID proporcionada.
+            Photo result = await _dbContext.Photos
+                .FirstOrDefaultAsync(photo => photo.Id.Equals(id));
+
+            // Comprobar si hay resultado
+            if (result is null)
+            {
+                return NotFound();
+            }
+
+            // Eliminar de la base de datos
+            _dbContext.Photos.Remove(result);
+            await _dbContext.SaveChangesAsync();
+
+            // Todo ha ido bien
+            return Ok();
         }
     }
 }
