@@ -1,15 +1,20 @@
 // Stores
-export interface IAlbumsStore
+export class IStore
+{
+    modules: any;
+}
+
+export interface IAlbumsStore extends ILoad
 {
     Albums: IAlbum[];
 }
 
-export interface IPhotosStore
+export interface IPhotosStore extends ILoad
 {
     Photos: IPhoto[];
 }
 
-export interface ITagStore
+export interface ITagStore extends ILoad
 {
     Tags: ITag[];
 }
@@ -42,4 +47,11 @@ export interface ITag
     Id: string;
     Name: string;
     CreationDate: Date;
+}
+
+// Others
+export interface ILoad
+{
+    Loading: boolean,
+    Loaded: boolean
 }

@@ -1,15 +1,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { AlbumsStore } from './stores/albums';
-import { PhotosStore } from './stores/photos';
-import { TagStore } from './stores/tags';
+import { AlbumsModule } from './stores/albums';
+import { PhotosModule } from './stores/photos';
+import { TagsModule } from './stores/tags';
+import { IStore } from './types';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
-        AlbumsStore,
-        PhotosStore,
-        TagStore
+        Albums: AlbumsModule,
+        Photos: PhotosModule,
+        Tags: TagsModule
     }
-});
+} as IStore);
