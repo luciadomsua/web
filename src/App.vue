@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <Navbar />
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -8,22 +7,6 @@
     <router-view/>
   </div>
 </template>
-
-<script lang="ts">
-import Vue from 'vue';
-import { Component } from "vue-property-decorator";
-import Navbar from "./components/Navbar.vue";
-
-@Component({
-  components: {
-    Navbar: require("./components/Navbar.vue")
-  }
-})
-export default class App extends Vue{
-  
-}
-</script>
-
 
 <style lang="scss">
 #app {
