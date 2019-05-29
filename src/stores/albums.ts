@@ -1,6 +1,7 @@
-import { IAlbumsStore, IAlbum, IStore, ILoad } from '../types';
+import { IAlbumsStore, IAlbum, IStore } from '@/types';
 import { GetterTree, Module, MutationTree, ActionTree } from 'vuex';
-import Toolbox from '../tools/toolbox';
+import Toolbox from '@/tools/toolbox';
+import AlbumsService from '@/services/albums';
 
 const namespaced = true;
 
@@ -11,33 +12,40 @@ const state: IAlbumsStore = {
 };
 
 const getters: GetterTree<IAlbumsStore, IStore> = {
-    Albums: function (albumsStore): IAlbum[]
+    Albums: function (store: IAlbumsStore): IAlbum[]
     {
-        return albumsStore.Albums.filter(x => x.Id == "0");
+        return store.Albums.filter(x => x.Id == "0");
     }
 };
 
 const mutations: MutationTree<IAlbumsStore> = {
-    Loading: function (albumStore, { payload })
+    Loading: function (store: IAlbumsStore, flag: boolean)
     {
-        albumStore.Loading = payload;
-        albumStore.Loaded = !payload;
+        store.Loading = flag;
+        store.Loaded = !flag;
     },
-    Loaded: function (albumStore, { payload })
+    Loaded: function (store: IAlbumsStore, albums: IAlbum[])
     {
-        albumStore.Loaded = payload;
-        albumStore.Loading = !payload;
+        store.Loading = store.Loaded;
+        store.Albums = albums;
+        store.Loaded = !store.Loaded;
     }
 };
 
 const actions: ActionTree<IAlbumsStore, IStore> = {
     Load: function (context)
     {
-        context.commit("Loading", { payload: true });
+        context.commit("Loading", true);
 
-        setTimeout(() => { }, 500);
+        const albumsService = new AlbumsService();
 
-        context.commit("Loaded", { payload: true });
+        albumsService.getAlbums().then(function (albums)
+        {
+            context.commit("Loaded", albums);
+        }).catch(function (error)
+        {
+
+        });
     }
 };
 

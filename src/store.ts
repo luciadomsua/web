@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { AlbumsModule } from './stores/albums';
-import { PhotosModule } from './stores/photos';
-import { TagsModule } from './stores/tags';
-import { IStore } from './types';
+import { AlbumsModule } from '@/stores/albums';
+import { PhotosModule } from '@/stores/photos';
+import { TagsModule } from '@/stores/tags';
+import { IStore } from '@/types';
 
 Vue.use(Vuex);
 

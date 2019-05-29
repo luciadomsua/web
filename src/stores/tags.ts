@@ -1,6 +1,7 @@
 import { ITagStore, ITag, IStore } from '@/types';
 import { GetterTree, Module, MutationTree, ActionTree } from 'vuex';
 import Toolbox from '@/tools/toolbox';
+import TagsService from '@/services/tags';
 
 const namespaced = true;
 
@@ -11,33 +12,40 @@ const state: ITagStore = {
 }
 
 const getters: GetterTree<ITagStore, IStore> = {
-    Tags: function (tagStore): ITag[]
+    Tags: function (store: ITagStore): ITag[]
     {
-        return tagStore.Tags.filter(x => x.Id == "0");
+        return store.Tags.filter(x => x.Id == "0");
     }
 }
 
 const mutations: MutationTree<ITagStore> = {
-    Loading: function (tagStore, { payload })
+    Loading: function (store: ITagStore, flag: boolean)
     {
-        tagStore.Loading = payload;
-        tagStore.Loaded = !payload;
+        store.Loading = flag;
+        store.Loaded = !flag;
     },
-    Loaded: function (tagStore, { payload })
+    Loaded: function (store: ITagStore, tags: ITag[])
     {
-        tagStore.Loading = !payload;
-        tagStore.Loaded = payload;
+        store.Loading = store.Loaded;
+        store.Tags = tags;
+        store.Loaded = !store.Loaded;
     }
 };
 
 const actions: ActionTree<ITagStore, IStore> = {
     Load: function (context)
     {
-        context.commit("Loading", { payload: true });
+        context.commit("Loading", true);
 
-        setTimeout(() => { }, 500);
+        const tagsService = new TagsService();
 
-        context.commit("Loaded", { payload: true });
+        tagsService.getTags().then(function (tags: ITag[])
+        {
+            context.commit("Loaded", tags);
+        }).catch(function (error)
+        {
+
+        });
     }
 };
 

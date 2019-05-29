@@ -1,4 +1,4 @@
-import { IPhoto, IAlbum, ITag } from '../types';
+import { IPhoto, IAlbum, ITag } from '@/types';
 export default class Toolbox
 {
     public static mockPhotos(): IPhoto[]

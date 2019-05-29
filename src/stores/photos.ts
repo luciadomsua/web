@@ -1,6 +1,7 @@
-import { IPhotosStore, IPhoto, IStore } from '../types';
-import { GetterTree, Module, MutationTree, ActionTree } from 'vuex';
-import Toolbox from '../tools/toolbox';
+import { IPhotosStore, IPhoto, IStore } from '@/types';
+import { GetterTree, Module, MutationTree, ActionTree, ActionContext } from 'vuex';
+import Toolbox from '@/tools/toolbox';
+import PhotosService from '@/services/photos';
 
 const namespaced = true;
 
@@ -11,33 +12,40 @@ const state: IPhotosStore = {
 };
 
 const getters: GetterTree<IPhotosStore, IStore> = {
-    Photos: function (photoStore): IPhoto[]
+    Photos: function (store: IPhotosStore): IPhoto[]
     {
-        return photoStore.Photos.filter((photo) => photo.Id == "1");
+        return store.Photos.filter((photo) => photo.Id == "1");
     }
 };
 
 const mutations: MutationTree<IPhotosStore> = {
-    Loading: function (photoStore, { payload })
+    Loading: function (store: IPhotosStore, flag: boolean)
     {
-        photoStore.Loading = payload;
-        photoStore.Loaded = !payload;
+        store.Loading = flag;
+        store.Loaded = !flag;
     },
-    Loaded: function (photoStore, { payload })
+    Loaded: function (store: IPhotosStore, photos: IPhoto[])
     {
-        photoStore.Loaded = payload;
-        photoStore.Loading = !payload;
+        store.Loading = store.Loaded;
+        store.Photos = photos;
+        store.Loaded = !store.Loaded;
     }
 };
 
 const actions: ActionTree<IPhotosStore, IStore> = {
-    Load: function (context)
+    Load: function (context: ActionContext<IPhotosStore, IStore>)
     {
-        context.commit("Loading", { payload: true });
+        context.commit("Loading", true);
 
-        setTimeout(() => { }, 500);
+        const photosService = new PhotosService();
 
-        context.commit("Loaded", { payload: true });
+        photosService.getPhotos().then(function (photos)
+        {
+            context.commit("Loaded", photos);
+        }).catch(function (error)
+        {
+
+        });
     }
 };
 

@@ -1,4 +1,4 @@
-import { ITag } from '../types';
+import { ITag } from '@/types';
 import Api from '@/tools/api';
 
 export default class TagsService
