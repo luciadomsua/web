@@ -1,4 +1,4 @@
-import { IAlbum } from '../types';
+import { Album } from '../types';
 import Api from '@/tools/api';
 
 export default class AlbumsService
@@ -10,23 +10,15 @@ export default class AlbumsService
         this._api = new Api();
     }
 
-    async getAlbums(): Promise<IAlbum[]>
+    async getAlbums(): Promise<Album[]>
     {
-        let albumArray: IAlbum[] = [];
-
         const response = await this._api.getAlbums();
-
-        albumArray = Object.assign(albumArray, response);
-        return albumArray;
+        return Object.assign({}, response) as Album[];
     }
 
-    async getAlbum(id: string): Promise<IAlbum>
+    async getAlbum(id: string): Promise<Album>
     {
-        let album: IAlbum = Object.create(null);
-
         const response = await this._api.getAlbum(id);
-
-        album = Object.assign(album, response);
-        return album;
+        return Object.assign({}, response) as Album;
     }
 }

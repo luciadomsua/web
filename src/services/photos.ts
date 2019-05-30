@@ -1,4 +1,4 @@
-import { IPhoto } from '../types';
+import { Photo } from '../types';
 import Api from '@/tools/api';
 
 export default class PhotosService
@@ -10,23 +10,15 @@ export default class PhotosService
         this._api = new Api();
     }
 
-    async getPhotos(): Promise<IPhoto[]>
+    async getPhotos(): Promise<Photo[]>
     {
-        let photoArray: IPhoto[] = [];
-
         const response = await this._api.getPhotos();
-
-        photoArray = Object.assign(photoArray, response);
-        return photoArray;
+        return Object.assign({}, response) as Photo[];
     }
 
-    async getPhoto(id: string): Promise<IPhoto>
+    async getPhoto(id: string): Promise<Photo>
     {
-        let photo: IPhoto = Object.create(null);
-
         const response = await this._api.getPhoto(id);
-
-        photo = Object.assign(photo, response);
-        return photo;
+        return Object.assign({}, response) as Photo;
     }
 }

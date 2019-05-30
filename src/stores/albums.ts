@@ -1,55 +1,60 @@
-import { IAlbumsStore, IAlbum, IStore } from '@/types';
-import { GetterTree, Module, MutationTree, ActionTree } from 'vuex';
+import { AlbumsState, Album, RootState } from '@/types';
+import { GetterTree, Module, MutationTree, ActionTree, ActionContext } from 'vuex';
 import Toolbox from '@/tools/toolbox';
 import AlbumsService from '@/services/albums';
 
 const namespaced = true;
 
-const state: IAlbumsStore = {
-    Albums: Toolbox.mockAlbums(),
-    Loading: true,
-    Loaded: false
+const state: AlbumsState = {
+    albums: Toolbox.mockAlbums(),
+    loading: true,
+    loaded: false,
+    error: null
 };
 
-const getters: GetterTree<IAlbumsStore, IStore> = {
-    Albums: function (store: IAlbumsStore): IAlbum[]
+const getters: GetterTree<AlbumsState, RootState> = {
+    albums: (state: AlbumsState): Album[] =>
     {
-        return store.Albums.filter(x => x.Id == "0");
+        return state.albums;
     }
 };
 
-const mutations: MutationTree<IAlbumsStore> = {
-    Loading: function (store: IAlbumsStore, flag: boolean)
+const mutations: MutationTree<AlbumsState> = {
+    loading: (state: AlbumsState, flag: boolean) =>
     {
-        store.Loading = flag;
-        store.Loaded = !flag;
+        state.loading = flag;
+        state.loaded = !flag;
     },
-    Loaded: function (store: IAlbumsStore, albums: IAlbum[])
+    loaded: (state: AlbumsState, albums: Album[]) =>
     {
-        store.Loading = store.Loaded;
-        store.Albums = albums;
-        store.Loaded = !store.Loaded;
+        state.loading = state.loaded;
+        state.albums = albums;
+        state.loaded = !state.loaded;
+    },
+    error: (state: AlbumsState, error: any) =>
+    {
+        state.error = error;
     }
 };
 
-const actions: ActionTree<IAlbumsStore, IStore> = {
-    Load: function (context)
+const actions: ActionTree<AlbumsState, RootState> = {
+    load: async ({ commit }: ActionContext<AlbumsState, RootState>) =>
     {
-        context.commit("Loading", true);
+        commit("loading", true);
+        commit("error", null);
 
         const albumsService = new AlbumsService();
 
-        albumsService.getAlbums().then(function (albums)
-        {
-            context.commit("Loaded", albums);
-        }).catch(function (error)
-        {
-
-        });
+        try {
+            const albums: Album[] = await albumsService.getAlbums();
+            commit("loaded", albums);
+        } catch (error) {
+            commit("error", error);
+        }
     }
 };
 
-export const AlbumsModule: Module<IAlbumsStore, IStore> = {
+export const AlbumsModule: Module<AlbumsState, RootState> = {
     namespaced,
     state,
     getters,

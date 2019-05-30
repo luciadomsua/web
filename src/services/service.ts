@@ -1,6 +1,6 @@
-import PhotosService from "./photos";
-import AlbumService from "./albums";
-import TagsService from './tags';
+import PhotosService from "@/services/photos";
+import AlbumService from "@/services/albums";
+import TagsService from '@/services/tags';
 
 export default class Service
 {

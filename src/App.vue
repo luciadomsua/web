@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div id="nav">
-            <router-link to="/">Home</router-link> |
+            <router-link to="/">Home</router-link>|
             <router-link to="/about">About</router-link>
         </div>
         <router-view/>
@@ -10,13 +10,16 @@
 
 <script lang="ts">
 import Vue from "vue";
-export default Vue.extend({
+import { Component } from "vue-property-decorator";
+
+@Component
+export default class App extends Vue {
     mounted(): void {
         this.$store.dispatch("Albums/Load");
         this.$store.dispatch("Photos/Load");
         this.$store.dispatch("Tags/Load");
     }
-});
+}
 </script>
 
 <style lang="scss">

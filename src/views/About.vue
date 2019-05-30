@@ -12,10 +12,10 @@
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import { Getter } from "vuex-class";
-import { IAlbum } from "@/types";
+import { Album } from "@/types";
 
 @Component
 export default class About extends Vue {
-    @Getter Albums?: IAlbum[];
+    @Getter Albums?: Album[];
 }
 </script>

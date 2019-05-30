@@ -3,14 +3,16 @@ import Vuex from 'vuex';
 import { AlbumsModule } from '@/stores/albums';
 import { PhotosModule } from '@/stores/photos';
 import { TagsModule } from '@/stores/tags';
-import { IStore } from '@/types';
+import { RootState } from '@/types';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store: RootState = {
     modules: {
         Albums: AlbumsModule,
         Photos: PhotosModule,
         Tags: TagsModule
     }
-} as IStore);
+};
+
+export default new Vuex.Store(store);

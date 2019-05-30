@@ -1,55 +1,56 @@
-import { IPhotosStore, IPhoto, IStore } from '@/types';
+import { PhotosState, Photo, RootState } from '@/types';
 import { GetterTree, Module, MutationTree, ActionTree, ActionContext } from 'vuex';
 import Toolbox from '@/tools/toolbox';
 import PhotosService from '@/services/photos';
 
 const namespaced = true;
 
-const state: IPhotosStore = {
-    Photos: Toolbox.mockPhotos(),
-    Loading: true,
-    Loaded: false
+const state: PhotosState = {
+    photos: Toolbox.mockPhotos(),
+    loading: true,
+    loaded: false,
+    error: null
 };
 
-const getters: GetterTree<IPhotosStore, IStore> = {
-    Photos: function (store: IPhotosStore): IPhoto[]
+const getters: GetterTree<PhotosState, RootState> = {
+    photos: (state: PhotosState): Photo[] =>
     {
-        return store.Photos.filter((photo) => photo.Id == "1");
+        return state.photos;
     }
 };
 
-const mutations: MutationTree<IPhotosStore> = {
-    Loading: function (store: IPhotosStore, flag: boolean)
+const mutations: MutationTree<PhotosState> = {
+    loading: (state: PhotosState, flag: boolean) =>
     {
-        store.Loading = flag;
-        store.Loaded = !flag;
+        state.loading = flag;
+        state.loaded = !flag;
     },
-    Loaded: function (store: IPhotosStore, photos: IPhoto[])
+    loaded: (state: PhotosState, photos: Photo[]) =>
     {
-        store.Loading = store.Loaded;
-        store.Photos = photos;
-        store.Loaded = !store.Loaded;
+        state.loading = state.loaded;
+        state.photos = photos;
+        state.loaded = !state.loaded;
     }
 };
 
-const actions: ActionTree<IPhotosStore, IStore> = {
-    Load: function (context: ActionContext<IPhotosStore, IStore>)
+const actions: ActionTree<PhotosState, RootState> = {
+    load: async ({ commit }: ActionContext<PhotosState, RootState>) =>
     {
-        context.commit("Loading", true);
+        commit("loading", true);
+        commit("error", null);
 
         const photosService = new PhotosService();
 
-        photosService.getPhotos().then(function (photos)
-        {
-            context.commit("Loaded", photos);
-        }).catch(function (error)
-        {
-
-        });
+        try {
+            const photos: Photo[] = await photosService.getPhotos();
+            commit("loaded", photos);
+        } catch (error) {
+            commit("error", error);
+        }
     }
 };
 
-export const PhotosModule: Module<IPhotosStore, IStore> = {
+export const PhotosModule: Module<PhotosState, RootState> = {
     namespaced,
     state,
     getters,

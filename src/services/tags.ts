@@ -1,4 +1,4 @@
-import { ITag } from '@/types';
+import { Tag } from '@/types';
 import Api from '@/tools/api';
 
 export default class TagsService
@@ -10,23 +10,15 @@ export default class TagsService
         this._api = new Api();
     }
 
-    async getTags(): Promise<ITag[]>
+    async getTags(): Promise<Tag[]>
     {
-        let tagArray: ITag[] = [];
-
         const response = await this._api.getTags();
-
-        tagArray = Object.assign(tagArray, response);
-        return tagArray;
+        return Object.assign({}, response) as Tag[];
     }
 
-    async getTag(id: string): Promise<ITag>
+    async getTag(id: string): Promise<Tag>
     {
-        let tag: ITag = Object.create(null);
-
         const response = await this._api.getTag(id);
-
-        tag = Object.assign(tag, response);
-        return tag;
+        return Object.assign({}, response) as Tag;
     }
 }

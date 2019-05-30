@@ -1,55 +1,60 @@
-import { ITagStore, ITag, IStore } from '@/types';
-import { GetterTree, Module, MutationTree, ActionTree } from 'vuex';
+import { TagsState, Tag, RootState } from '@/types';
+import { GetterTree, Module, MutationTree, ActionTree, ActionContext } from 'vuex';
 import Toolbox from '@/tools/toolbox';
 import TagsService from '@/services/tags';
 
 const namespaced = true;
 
-const state: ITagStore = {
-    Tags: Toolbox.mockTags(),
-    Loading: true,
-    Loaded: false
+const state: TagsState = {
+    tags: Toolbox.mockTags(),
+    loading: true,
+    loaded: false,
+    error: null
 }
 
-const getters: GetterTree<ITagStore, IStore> = {
-    Tags: function (store: ITagStore): ITag[]
+const getters: GetterTree<TagsState, RootState> = {
+    tags: (state: TagsState): Tag[] =>
     {
-        return store.Tags.filter(x => x.Id == "0");
+        return state.tags;
     }
 }
 
-const mutations: MutationTree<ITagStore> = {
-    Loading: function (store: ITagStore, flag: boolean)
+const mutations: MutationTree<TagsState> = {
+    loading: (state: TagsState, flag: boolean) =>
     {
-        store.Loading = flag;
-        store.Loaded = !flag;
+        state.loading = flag;
+        state.loaded = !flag;
     },
-    Loaded: function (store: ITagStore, tags: ITag[])
+    loaded: (state: TagsState, tags: Tag[]) =>
     {
-        store.Loading = store.Loaded;
-        store.Tags = tags;
-        store.Loaded = !store.Loaded;
+        state.loading = state.loaded;
+        state.tags = tags;
+        state.loaded = !state.loaded;
+    },
+    error: (state: TagsState, error: any) =>
+    {
+        state.error = error;
     }
 };
 
-const actions: ActionTree<ITagStore, IStore> = {
-    Load: function (context)
+const actions: ActionTree<TagsState, RootState> = {
+    load: async ({ commit }: ActionContext<TagsState, RootState>) =>
     {
-        context.commit("Loading", true);
+        commit("loading", true);
+        commit("error", null);
 
         const tagsService = new TagsService();
 
-        tagsService.getTags().then(function (tags: ITag[])
-        {
-            context.commit("Loaded", tags);
-        }).catch(function (error)
-        {
-
-        });
+        try {
+            const tags: Tag[] = await tagsService.getTags();
+            commit("loaded", tags);
+        } catch (error) {
+            commit("error", error);
+        }
     }
 };
 
-export const TagsModule: Module<ITagStore, IStore> = {
+export const TagsModule: Module<TagsState, RootState> = {
     namespaced,
     state,
     getters,

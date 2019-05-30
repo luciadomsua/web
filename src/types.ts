@@ -1,34 +1,34 @@
 // Stores
-export class IStore
+export class RootState
 {
     modules: any;
 }
 
-export interface IAlbumsStore extends ILoad
+export interface AlbumsState extends Load
 {
-    Albums: IAlbum[];
+    albums: Album[];
 }
 
-export interface IPhotosStore extends ILoad
+export interface PhotosState extends Load
 {
-    Photos: IPhoto[];
+    photos: Photo[];
 }
 
-export interface ITagStore extends ILoad
+export interface TagsState extends Load
 {
-    Tags: ITag[];
+    tags: Tag[];
 }
 
 // Models
-export interface IAlbum
+export interface Album
 {
     Id: string;
     Title: string;
     CreationDate: Date;
-    Photos: IPhoto[] | null;
+    Photos: Photo[] | null;
 }
 
-export interface IPhoto
+export interface Photo
 {
     Id: string;
     FileName: string;
@@ -38,11 +38,11 @@ export interface IPhoto
     Width: number;
     Price: number;
     CreationDate: Date;
-    Album: IAlbum | null;
-    Tags: ITag[] | null;
+    Album: Album | null;
+    Tags: Tag[] | null;
 }
 
-export interface ITag
+export interface Tag
 {
     Id: string;
     Name: string;
@@ -50,8 +50,9 @@ export interface ITag
 }
 
 // Others
-export interface ILoad
+export interface Load
 {
-    Loading: boolean,
-    Loaded: boolean
+    loading: boolean,
+    loaded: boolean,
+    error: string | null
 }

@@ -1,62 +1,62 @@
-import { IPhoto, IAlbum, ITag } from '@/types';
+import { Photo, Album, Tag } from '@/types';
 export default class Toolbox
 {
-    public static mockPhotos(): IPhoto[]
+    public static mockPhotos(): Photo[]
     {
         return [
             {
                 Id: "1", FileName: "Test", Title: "Test", Extension: ".png",
                 CreationDate: new Date(), Height: 400, Width: 400, Album: null,
                 Price: 9.99, Tags: null
-            } as IPhoto,
+            } as Photo,
             {
                 Id: "1", FileName: "Test", Title: "Test", Extension: ".png",
                 CreationDate: new Date(), Height: 400, Width: 400, Album: null,
                 Price: 9.99, Tags: null
-            } as IPhoto,
+            } as Photo,
             {
                 Id: "1", FileName: "Test", Title: "Test", Extension: ".png",
                 CreationDate: new Date(), Height: 400, Width: 400, Album: null,
                 Price: 9.99, Tags: null
-            } as IPhoto,
+            } as Photo,
             {
                 Id: "1", FileName: "Test", Title: "Test", Extension: ".png",
                 CreationDate: new Date(), Height: 400, Width: 400, Album: null,
                 Price: 9.99, Tags: null
-            } as IPhoto
-        ] as IPhoto[]
+            } as Photo
+        ] as Photo[]
     }
 
-    public static mockAlbums(): IAlbum[]
+    public static mockAlbums(): Album[]
     {
         return [
-            { Id: "0", CreationDate: new Date(), Title: "Test1", Photos: null } as IAlbum,
-            { Id: "0", CreationDate: new Date(), Title: "Test1", Photos: null } as IAlbum,
-            { Id: "0", CreationDate: new Date(), Title: "Test1", Photos: null } as IAlbum,
-            { Id: "0", CreationDate: new Date(), Title: "Test1", Photos: null } as IAlbum,
-            { Id: "0", CreationDate: new Date(), Title: "Test1", Photos: null } as IAlbum,
-            { Id: "1", CreationDate: new Date(), Title: "Test1", Photos: null } as IAlbum,
-            { Id: "1", CreationDate: new Date(), Title: "Test1", Photos: null } as IAlbum,
-            { Id: "1", CreationDate: new Date(), Title: "Test1", Photos: null } as IAlbum,
-            { Id: "1", CreationDate: new Date(), Title: "Test1", Photos: null } as IAlbum,
-            { Id: "1", CreationDate: new Date(), Title: "Test1", Photos: null } as IAlbum,
-        ] as IAlbum[]
+            { Id: "0", CreationDate: new Date(), Title: "Test1", Photos: null } as Album,
+            { Id: "0", CreationDate: new Date(), Title: "Test1", Photos: null } as Album,
+            { Id: "0", CreationDate: new Date(), Title: "Test1", Photos: null } as Album,
+            { Id: "0", CreationDate: new Date(), Title: "Test1", Photos: null } as Album,
+            { Id: "0", CreationDate: new Date(), Title: "Test1", Photos: null } as Album,
+            { Id: "1", CreationDate: new Date(), Title: "Test1", Photos: null } as Album,
+            { Id: "1", CreationDate: new Date(), Title: "Test1", Photos: null } as Album,
+            { Id: "1", CreationDate: new Date(), Title: "Test1", Photos: null } as Album,
+            { Id: "1", CreationDate: new Date(), Title: "Test1", Photos: null } as Album,
+            { Id: "1", CreationDate: new Date(), Title: "Test1", Photos: null } as Album,
+        ] as Album[]
     }
 
-    public static mockTags(): ITag[]
+    public static mockTags(): Tag[]
     {
         return [
-            { Id: "0", Name: "Tag test", CreationDate: new Date() } as ITag,
-            { Id: "0", Name: "Tag test", CreationDate: new Date() } as ITag,
-            { Id: "0", Name: "Tag test", CreationDate: new Date() } as ITag,
-            { Id: "0", Name: "Tag test", CreationDate: new Date() } as ITag,
-            { Id: "0", Name: "Tag test", CreationDate: new Date() } as ITag,
-            { Id: "1", Name: "Tag test", CreationDate: new Date() } as ITag,
-            { Id: "1", Name: "Tag test", CreationDate: new Date() } as ITag,
-            { Id: "1", Name: "Tag test", CreationDate: new Date() } as ITag,
-            { Id: "1", Name: "Tag test", CreationDate: new Date() } as ITag,
-            { Id: "1", Name: "Tag test", CreationDate: new Date() } as ITag,
-            { Id: "1", Name: "Tag test", CreationDate: new Date() } as ITag,
-        ] as ITag[]
+            { Id: "0", Name: "Tag test", CreationDate: new Date() } as Tag,
+            { Id: "0", Name: "Tag test", CreationDate: new Date() } as Tag,
+            { Id: "0", Name: "Tag test", CreationDate: new Date() } as Tag,
+            { Id: "0", Name: "Tag test", CreationDate: new Date() } as Tag,
+            { Id: "0", Name: "Tag test", CreationDate: new Date() } as Tag,
+            { Id: "1", Name: "Tag test", CreationDate: new Date() } as Tag,
+            { Id: "1", Name: "Tag test", CreationDate: new Date() } as Tag,
+            { Id: "1", Name: "Tag test", CreationDate: new Date() } as Tag,
+            { Id: "1", Name: "Tag test", CreationDate: new Date() } as Tag,
+            { Id: "1", Name: "Tag test", CreationDate: new Date() } as Tag,
+            { Id: "1", Name: "Tag test", CreationDate: new Date() } as Tag,
+        ] as Tag[]
     }
 }
