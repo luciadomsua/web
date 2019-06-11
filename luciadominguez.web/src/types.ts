@@ -1,7 +1,9 @@
+import { ModuleTree } from 'vuex';
+
 // Stores
-export class RootState
+export interface RootState
 {
-    modules: any;
+
 }
 
 export interface AlbumsState extends Load
@@ -22,31 +24,31 @@ export interface TagsState extends Load
 // Models
 export interface Album
 {
-    Id: string;
-    Title: string;
-    CreationDate: Date;
-    Photos: Photo[] | null;
+    Id?: string;
+    Title?: string;
+    CreationDate?: Date;
+    Photos?: Photo[] | null;
 }
 
 export interface Photo
 {
-    Id: string;
-    FileName: string;
-    Title: string;
-    Extension: string;
-    Height: number;
-    Width: number;
-    Price: number;
-    CreationDate: Date;
-    Album: Album | null;
-    Tags: Tag[] | null;
+    Id?: string;
+    FileName?: string;
+    Title?: string;
+    Extension?: string;
+    Height?: number;
+    Width?: number;
+    Price?: number;
+    CreationDate?: Date;
+    Album?: Album | null;
+    Tags?: Tag[] | null;
 }
 
 export interface Tag
 {
-    Id: string;
-    Name: string;
-    CreationDate: Date;
+    Id?: string;
+    Name?: string;
+    CreationDate?: Date;
 }
 
 // Others

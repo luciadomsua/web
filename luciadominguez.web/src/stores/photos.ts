@@ -1,5 +1,5 @@
 import { PhotosState, Photo, RootState } from '@/types';
-import { GetterTree, Module, MutationTree, ActionTree, ActionContext } from 'vuex';
+import { GetterTree, Module, MutationTree, ActionTree, ActionContext, MutationPayload } from 'vuex';
 import Toolbox from '@/tools/toolbox';
 import PhotosService from '@/services/photos';
 
@@ -13,39 +13,43 @@ const state: PhotosState = {
 };
 
 const getters: GetterTree<PhotosState, RootState> = {
-    photos: (state: PhotosState): Photo[] =>
+    photos(state: PhotosState): Photo[]
     {
         return state.photos;
     }
 };
 
 const mutations: MutationTree<PhotosState> = {
-    loading: (state: PhotosState, flag: boolean) =>
+    loading(state: PhotosState, { payload }: MutationPayload)
     {
-        state.loading = flag;
-        state.loaded = !flag;
+        state.loading = payload.flag;
+        state.loaded = !payload.flag;
     },
-    loaded: (state: PhotosState, photos: Photo[]) =>
+    loaded(state: PhotosState, { payload }: MutationPayload)
     {
         state.loading = state.loaded;
-        state.photos = photos;
+        state.photos = payload.photos;
         state.loaded = !state.loaded;
+    },
+    error(state: PhotosState, { payload }: MutationPayload)
+    {
+        state.error = payload.error;
     }
 };
 
 const actions: ActionTree<PhotosState, RootState> = {
-    load: async ({ commit }: ActionContext<PhotosState, RootState>) =>
+    async load({ commit }: ActionContext<PhotosState, RootState>)
     {
-        commit("loading", true);
+        commit("loading", { payload: true });
         commit("error", null);
 
         const photosService = new PhotosService();
 
         try {
             const photos: Photo[] = await photosService.getPhotos();
-            commit("loaded", photos);
+            commit("loaded", { payload: photos });
         } catch (error) {
-            commit("error", error);
+            commit("error", { payload: error });
         }
     }
 };

@@ -57,8 +57,12 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { Component } from "vue-property-decorator";
 
-export default class Navbar extends Vue {}
+@Component
+export default class Navbar extends Vue {
+    mounted(): void {}
+}
 </script>
 
 <style lang="scss">

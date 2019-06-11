@@ -13,12 +13,20 @@ export default class AlbumsService
     async getAlbums(): Promise<Album[]>
     {
         const response = await this._api.getAlbums();
-        return Object.assign({}, response) as Album[];
+
+        let albums: Album[] = [];
+        albums = Object.assign(albums, response);
+
+        return albums;
     }
 
     async getAlbum(id: string): Promise<Album>
     {
         const response = await this._api.getAlbum(id);
-        return Object.assign({}, response) as Album;
+
+        let album: Album = {};
+        album = Object.assign(album, response);
+
+        return album;
     }
 }

@@ -1,5 +1,5 @@
 import { TagsState, Tag, RootState } from '@/types';
-import { GetterTree, Module, MutationTree, ActionTree, ActionContext } from 'vuex';
+import { GetterTree, Module, MutationTree, ActionTree, ActionContext, MutationPayload } from 'vuex';
 import Toolbox from '@/tools/toolbox';
 import TagsService from '@/services/tags';
 
@@ -13,43 +13,43 @@ const state: TagsState = {
 }
 
 const getters: GetterTree<TagsState, RootState> = {
-    tags: (state: TagsState): Tag[] =>
+    tags(state: TagsState): Tag[]
     {
         return state.tags;
     }
 }
 
 const mutations: MutationTree<TagsState> = {
-    loading: (state: TagsState, flag: boolean) =>
+    loading(state: TagsState, { payload }: MutationPayload)
     {
-        state.loading = flag;
-        state.loaded = !flag;
+        state.loading = payload.flag;
+        state.loaded = !payload.flag;
     },
-    loaded: (state: TagsState, tags: Tag[]) =>
+    loaded(state: TagsState, { payload }: MutationPayload)
     {
         state.loading = state.loaded;
-        state.tags = tags;
+        state.tags = payload.tags;
         state.loaded = !state.loaded;
     },
-    error: (state: TagsState, error: any) =>
+    error(state: TagsState, { payload }: MutationPayload)
     {
-        state.error = error;
+        state.error = payload.error;
     }
 };
 
 const actions: ActionTree<TagsState, RootState> = {
-    load: async ({ commit }: ActionContext<TagsState, RootState>) =>
+    async load({ commit }: ActionContext<TagsState, RootState>)
     {
-        commit("loading", true);
+        commit("loading", { payload: true });
         commit("error", null);
 
         const tagsService = new TagsService();
 
         try {
             const tags: Tag[] = await tagsService.getTags();
-            commit("loaded", tags);
+            commit("loaded", { payload: tags });
         } catch (error) {
-            commit("error", error);
+            commit("error", { payload: error });
         }
     }
 };

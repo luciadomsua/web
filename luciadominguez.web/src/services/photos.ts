@@ -13,12 +13,20 @@ export default class PhotosService
     async getPhotos(): Promise<Photo[]>
     {
         const response = await this._api.getPhotos();
-        return Object.assign({}, response) as Photo[];
+
+        let photos: Photo[] = [];
+        photos = Object.assign(photos, response);
+
+        return photos;
     }
 
     async getPhoto(id: string): Promise<Photo>
     {
         const response = await this._api.getPhoto(id);
-        return Object.assign({}, response) as Photo;
+
+        let photo: Photo = {};
+        photo = Object.assign(photo, response);
+
+        return photo;
     }
 }

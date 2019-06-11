@@ -8,10 +8,13 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Prop } from "vue-property-decorator";
+import { Prop, Component } from "vue-property-decorator";
 
+@Component
 export default class Slider extends Vue {
     @Prop() items!: any[];
+
+    mounted(): void {}
 }
 </script>
 

@@ -5,11 +5,14 @@
 <script lang="ts">
 import Vue from "vue";
 import { Getter } from "vuex-class";
-import { Prop } from "vue-property-decorator";
-import { Album } from "@/types";
+import { Prop, Component } from "vue-property-decorator";
+import { Album } from "../types";
 
+@Component
 export default class AlbumThumbnail extends Vue {
     @Prop() album!: Album;
+
+    mounted(): void {}
 }
 </script>
 

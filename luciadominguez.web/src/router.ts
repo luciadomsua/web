@@ -29,13 +29,15 @@ const fallbackRoute: RouteConfig = {
     redirect: "/home"
 }
 
+const routes: RouteConfig[] = [
+    homeRoute,
+    aboutRoute,
+    galleryRoute,
+    fallbackRoute
+];
+
 const routerOptions: RouterOptions = {
-    routes: [
-        homeRoute,
-        aboutRoute,
-        galleryRoute,
-        fallbackRoute
-    ],
+    routes,
     fallback: true
 };
 

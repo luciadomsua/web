@@ -1,18 +1,21 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
+import Vuex, { StoreOptions } from 'vuex';
 import { AlbumsModule } from '@/stores/albums';
 import { PhotosModule } from '@/stores/photos';
 import { TagsModule } from '@/stores/tags';
 import { RootState } from '@/types';
+import { ModuleTree } from 'vuex';
 
 Vue.use(Vuex);
 
-const store: RootState = {
-    modules: {
-        Albums: AlbumsModule,
-        Photos: PhotosModule,
-        Tags: TagsModule
-    }
+const modules: ModuleTree<RootState> = {
+    albums: AlbumsModule,
+    photos: PhotosModule,
+    tags: TagsModule
+};
+
+const store: StoreOptions<RootState> = {
+    modules
 };
 
 export default new Vuex.Store(store);

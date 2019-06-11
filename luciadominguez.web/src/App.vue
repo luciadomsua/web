@@ -17,9 +17,9 @@ import Navbar from "@/components/Navbar.vue";
 })
 export default class App extends Vue {
     mounted(): void {
-        this.$store.dispatch("Albums/load");
-        this.$store.dispatch("Photos/load");
-        this.$store.dispatch("Tags/load");
+        this.$store.dispatch("albums/load");
+        this.$store.dispatch("photos/load");
+        this.$store.dispatch("tags/load");
     }
 }
 </script>
