@@ -80,11 +80,14 @@ export default class Navbar extends Vue {
         max-width: $maxWidth;
         background-color: $primary;
         height: 4rem;
-        border: 1px solid red;
 
         .navbar-item img {
             max-height: 3rem;
         }
+    }
+
+    .navbar-link:not(.is-arrowless)::after {
+        border-color: #8d555b;
     }
 }
 </style>

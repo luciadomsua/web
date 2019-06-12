@@ -1,5 +1,3 @@
-import { ModuleTree } from 'vuex';
-
 // Stores
 export interface RootState
 {
@@ -26,8 +24,10 @@ export interface Album
 {
     Id?: string;
     Title?: string;
+    Description?: string;
     CreationDate?: Date;
     Photos?: Photo[] | null;
+    Cover?: Photo;
 }
 
 export interface Photo
@@ -42,6 +42,7 @@ export interface Photo
     CreationDate?: Date;
     Album?: Album | null;
     Tags?: Tag[] | null;
+    Url?: string;
 }
 
 export interface Tag
@@ -56,5 +57,5 @@ export interface Load
 {
     loading: boolean,
     loaded: boolean,
-    error: string | null
+    error: string | null | any
 }

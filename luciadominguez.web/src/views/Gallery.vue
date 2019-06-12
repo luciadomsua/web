@@ -1,18 +1,44 @@
 <template>
     <div class="gallery">
-        <h1>Gallery</h1>
+        <div class="album-slider">
+            <AlbumSlider :albums="albums"/>
+        </div>
+        <div class="album-slider">
+            <AlbumSlider :albums="albums"/>
+        </div>
+        <div class="album-slider">
+            <AlbumSlider :albums="albums"/>
+        </div>
+        <div class="album-slider">
+            <AlbumSlider :albums="albums"/>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import { Getter } from "vuex-class";
+import { Album } from "../types";
+import AlbumSlider from "../components/AlbumSlider.vue";
+import Toolbox from "../tools/toolbox";
 
-@Component
+@Component({
+    components: {
+        AlbumSlider
+    }
+})
 export default class Gallery extends Vue {
-    mounted(): void {}
+    @Getter albums!: Album[];
+
+    mounted(): void {
+        this.albums = Toolbox.mockAlbums();
+    }
 }
 </script>
 
 <style lang="scss">
+.album-slider {
+    margin-bottom: 30px;
+}
 </style>

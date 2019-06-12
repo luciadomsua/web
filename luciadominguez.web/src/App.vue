@@ -1,7 +1,9 @@
 <template>
     <div id="app">
         <Navbar/>
-        <router-view/>
+        <div class="wrapper">
+            <router-view/>
+        </div>
     </div>
 </template>
 
@@ -27,6 +29,7 @@ export default class App extends Vue {
 <style lang="scss">
 @import "~bulma/bulma.sass";
 @import "@/styles/index.scss";
+@import "@/styles/defines.scss";
 
 #app {
     font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -34,5 +37,12 @@ export default class App extends Vue {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+
+    .wrapper {
+        padding-top: 50px;
+        margin: 0 auto;
+        max-width: $maxWidth;
+        width: 100%;
+    }
 }
 </style>
