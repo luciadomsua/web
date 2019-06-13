@@ -13,46 +13,41 @@ const state: TagsState = {
 }
 
 const getters: GetterTree<TagsState, RootState> = {
-    tags(state: TagsState): Tag[]
-    {
+    tags(state: TagsState): Tag[] {
         return state.tags;
     }
 }
 
 const mutations: MutationTree<TagsState> = {
-    loading(state: TagsState, { payload }: MutationPayload)
-    {
+    loading(state: TagsState, { payload }) {
         state.loading = payload.flag;
         state.loaded = !payload.flag;
     },
-    loaded(state: TagsState, { payload }: MutationPayload)
-    {
+    loaded(state: TagsState, { payload }) {
         state.loading = state.loaded;
         state.tags = payload.tags;
         state.loaded = !state.loaded;
     },
-    error(state: TagsState, { payload }: MutationPayload)
-    {
+    error(state: TagsState, { payload }) {
         state.error = payload.error;
     }
-};
+}
 
 const actions: ActionTree<TagsState, RootState> = {
-    async load({ commit }: ActionContext<TagsState, RootState>)
-    {
-        commit("loading", { payload: true });
-        commit("error", null);
+    async load({ commit }: ActionContext<TagsState, RootState>) {
+        commit("loading", { payload: { flag: true } });
+        commit("error", { payload: { error: null } });
 
         const tagsService = new TagsService();
 
         try {
             const tags: Tag[] = await tagsService.getTags();
-            commit("loaded", { payload: tags });
+            commit("loaded", { payload: { tags: tags } });
         } catch (error) {
-            commit("error", { payload: error });
+            commit("error", { payload: { error: error } });
         }
     }
-};
+}
 
 export const TagsModule: Module<TagsState, RootState> = {
     namespaced,

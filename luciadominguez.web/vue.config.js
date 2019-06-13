@@ -1,8 +1,12 @@
 module.exports = {
     outputDir: 'wwwroot',
     publicPath: "/",
-    chainWebpack: config => {
+    chainWebpack: config =>
+    {
         // aspnet uses the other hmr so remove this one
         config.plugins.delete('hmr');
+    },
+    configureWebpack: {
+        devtool: 'source-map'
     }
 }

@@ -1,10 +1,10 @@
 <template>
-    <div id="app">
-        <Navbar/>
-        <div class="wrapper">
-            <router-view/>
-        </div>
+  <div id="app">
+    <Navbar/>
+    <div class="wrapper">
+      <router-view/>
     </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -13,16 +13,16 @@ import { Component } from "vue-property-decorator";
 import Navbar from "@/components/Navbar.vue";
 
 @Component({
-    components: {
-        Navbar
-    }
+  components: {
+    Navbar
+  }
 })
 export default class App extends Vue {
-    mounted(): void {
-        this.$store.dispatch("albums/load");
-        this.$store.dispatch("photos/load");
-        this.$store.dispatch("tags/load");
-    }
+  mounted(): void {
+    this.$store.dispatch("albums/load");
+    this.$store.dispatch("photos/load");
+    this.$store.dispatch("tags/load");
+  }
 }
 </script>
 
@@ -32,17 +32,17 @@ export default class App extends Vue {
 @import "@/styles/defines.scss";
 
 #app {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #333333;
 
-    .wrapper {
-        padding-top: 50px;
-        margin: 0 auto;
-        max-width: $maxWidth;
-        width: 100%;
-    }
+  .wrapper {
+    padding-top: calc(4rem + 50px);
+    margin: 0 auto;
+    max-width: $maxWidth;
+    width: 100%;
+  }
 }
 </style>

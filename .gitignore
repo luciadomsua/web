@@ -28,6 +28,7 @@ package-lock.json
 
 # VS
 .vs
+bin
 **/bin
 **/obj
 **/node_modules

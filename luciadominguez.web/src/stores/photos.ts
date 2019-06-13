@@ -10,49 +10,44 @@ const state: PhotosState = {
     loading: true,
     loaded: false,
     error: null
-};
+}
 
 const getters: GetterTree<PhotosState, RootState> = {
-    photos(state: PhotosState): Photo[]
-    {
+    photos(state: PhotosState): Photo[] {
         return state.photos;
     }
-};
+}
 
 const mutations: MutationTree<PhotosState> = {
-    loading(state: PhotosState, { payload }: MutationPayload)
-    {
+    loading(state: PhotosState, { payload }: MutationPayload) {
         state.loading = payload.flag;
         state.loaded = !payload.flag;
     },
-    loaded(state: PhotosState, { payload }: MutationPayload)
-    {
+    loaded(state: PhotosState, { payload }: MutationPayload) {
         state.loading = state.loaded;
         state.photos = payload.photos;
         state.loaded = !state.loaded;
     },
-    error(state: PhotosState, { payload }: MutationPayload)
-    {
+    error(state: PhotosState, { payload }: MutationPayload) {
         state.error = payload.error;
     }
-};
+}
 
 const actions: ActionTree<PhotosState, RootState> = {
-    async load({ commit }: ActionContext<PhotosState, RootState>)
-    {
-        commit("loading", { payload: true });
-        commit("error", null);
+    async load({ commit }: ActionContext<PhotosState, RootState>) {
+        commit("loading", { payload: { flag: true } });
+        commit("error", { payload: { error: null } });
 
         const photosService = new PhotosService();
 
         try {
             const photos: Photo[] = await photosService.getPhotos();
-            commit("loaded", { payload: photos });
+            commit("loaded", { payload: { photos: photos } });
         } catch (error) {
-            commit("error", { payload: error });
+            commit("error", { payload: { error: error } });
         }
     }
-};
+}
 
 export const PhotosModule: Module<PhotosState, RootState> = {
     namespaced,

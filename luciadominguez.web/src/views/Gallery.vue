@@ -1,18 +1,18 @@
 <template>
-    <div class="gallery">
-        <div class="album-slider">
-            <AlbumSlider :albums="albums"/>
-        </div>
-        <div class="album-slider">
-            <AlbumSlider :albums="albums"/>
-        </div>
-        <div class="album-slider">
-            <AlbumSlider :albums="albums"/>
-        </div>
-        <div class="album-slider">
-            <AlbumSlider :albums="albums"/>
-        </div>
+  <div class="gallery">
+    <div class="album-slider">
+      <AlbumSlider :albums="albums"/>
     </div>
+    <div class="album-slider">
+      <AlbumSlider :albums="albums"/>
+    </div>
+    <div class="album-slider">
+      <AlbumSlider :albums="albums"/>
+    </div>
+    <div class="album-slider">
+      <AlbumSlider :albums="albums"/>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -24,21 +24,19 @@ import AlbumSlider from "../components/AlbumSlider.vue";
 import Toolbox from "../tools/toolbox";
 
 @Component({
-    components: {
-        AlbumSlider
-    }
+  components: {
+    AlbumSlider
+  }
 })
 export default class Gallery extends Vue {
-    @Getter albums!: Album[];
+  @Getter("albums/all") albums!: Album[];
 
-    mounted(): void {
-        this.albums = Toolbox.mockAlbums();
-    }
+  mounted(): void {}
 }
 </script>
 
 <style lang="scss">
 .album-slider {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 </style>

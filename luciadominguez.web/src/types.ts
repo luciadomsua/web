@@ -1,37 +1,32 @@
 // Stores
-export interface RootState
-{
+export interface RootState {
 
 }
 
-export interface AlbumsState extends Load
-{
+export interface AlbumsState extends Load {
     albums: Album[];
 }
 
-export interface PhotosState extends Load
-{
+export interface PhotosState extends Load {
     photos: Photo[];
 }
 
-export interface TagsState extends Load
-{
+export interface TagsState extends Load {
     tags: Tag[];
 }
 
 // Models
-export interface Album
-{
+export interface Album {
     Id?: string;
     Title?: string;
     Description?: string;
     CreationDate?: Date;
     Photos?: Photo[] | null;
     Cover?: Photo;
+    Url?: string;
 }
 
-export interface Photo
-{
+export interface Photo {
     Id?: string;
     FileName?: string;
     Title?: string;
@@ -45,16 +40,14 @@ export interface Photo
     Url?: string;
 }
 
-export interface Tag
-{
+export interface Tag {
     Id?: string;
     Name?: string;
     CreationDate?: Date;
 }
 
 // Others
-export interface Load
-{
+export interface Load {
     loading: boolean,
     loaded: boolean,
     error: string | null | any
