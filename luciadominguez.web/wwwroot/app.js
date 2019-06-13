@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "100b1a18857cf027afbf";
+/******/ 	var hotCurrentHash = "2d6e0ac8fe4249bf8f2c";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1682,7 +1682,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".album-card {\n  max-width: 200px;\n  background-color: white;\n  padding: 5px 5px 5px;\n  border: 1px solid #ebebeb;\n  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  z-index: 1;\n}\n.album-card a {\n    text-decoration: none;\n    color: #333333;\n}\n.album-card .album-image {\n    opacity: 0.5;\n    width: 100%;\n    height: 100%;\n    -o-object-fit: cover;\n       object-fit: cover;\n    -o-object-position: center;\n       object-position: center;\n}\n", ""]);
+exports.push([module.i, ".album-card {\n  max-width: 200px;\n  background-color: white;\n  padding: 5px 5px 5px;\n  border: 1px solid #ebebeb;\n  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  z-index: 1;\n  position: absolute;\n}\n.album-card a {\n    text-decoration: none;\n    color: #333333;\n}\n.album-card .album-image {\n    opacity: 0.5;\n    width: 100%;\n    height: 100%;\n    -o-object-fit: cover;\n       object-fit: cover;\n    -o-object-position: center;\n       object-position: center;\n}\n", ""]);
 
 // exports
 
