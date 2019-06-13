@@ -1,13 +1,13 @@
 <template>
   <div class="album-card">
-    <a :href="album.Url">
+    <router-link :to="{ name: 'album', params: { id: album.Id } }">
       <div class="album-image">
         <img :src="album.Cover.Url" :alt="album.Description">
       </div>
       <div class="album-title">
         <span>{{ album.Title }}</span>
       </div>
-    </a>
+    </router-link>
   </div>
 </template>
 
@@ -32,7 +32,6 @@ export default class AlbumThumbnail extends Vue {
   border: 1px solid rgb(235, 235, 235);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   z-index: 1;
-  position: absolute;
 
   a {
     text-decoration: none;

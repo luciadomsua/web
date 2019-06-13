@@ -3,6 +3,7 @@ import Router, { RouterOptions, RouteConfig } from 'vue-router'
 import Home from '@/views/Home.vue'
 import About from '@/views/About.vue';
 import Gallery from '@/views/Gallery.vue';
+import AlbumView from '@/views/Album.vue';
 
 Vue.use(Router);
 
@@ -21,7 +22,15 @@ const aboutRoute: RouteConfig = {
 const galleryRoute: RouteConfig = {
     path: "/gallery",
     name: "gallery",
-    component: Gallery
+    component: Gallery,
+    children: [
+        {
+            path: "album/:id",
+            name: "album",
+            component: AlbumView,
+            props: true
+        }
+    ]
 };
 
 const fallbackRoute: RouteConfig = {

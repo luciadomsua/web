@@ -13,28 +13,37 @@ const state: AlbumsState = {
 }
 
 const getters: GetterTree<AlbumsState, RootState> = {
-    all(state: AlbumsState): Album[] {
+    all(state: AlbumsState): Album[]
+    {
         return state.albums;
+    },
+    byId: (state: AlbumsState) => (id: string) =>
+    {
+        return state.albums.filter(x => x.Id === id);
     }
 }
 
 const mutations: MutationTree<AlbumsState> = {
-    loading(state: AlbumsState, { payload }: MutationPayload) {
+    loading(state: AlbumsState, { payload }: MutationPayload)
+    {
         state.loading = payload.flag;
         state.loaded = !payload.flag;
     },
-    loaded(state: AlbumsState, { payload }: MutationPayload) {
+    loaded(state: AlbumsState, { payload }: MutationPayload)
+    {
         state.loading = state.loaded;
         state.albums = payload.albums;
         state.loaded = !state.loaded;
     },
-    error(state: AlbumsState, { payload }: MutationPayload) {
+    error(state: AlbumsState, { payload }: MutationPayload)
+    {
         state.error = payload.error;
     }
 }
 
 const actions: ActionTree<AlbumsState, RootState> = {
-    async load({ commit }: ActionContext<AlbumsState, RootState>) {
+    async load({ commit }: ActionContext<AlbumsState, RootState>)
+    {
         commit("loading", { payload: { flag: true } });
         commit("error", { payload: { error: null } });
 

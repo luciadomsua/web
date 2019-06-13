@@ -1,24 +1,30 @@
 <template>
-    <div class="photo-grid">
-        
+  <div class="photo-grid">
+    <div class="columns" v-for="photo in album.Photos" :key="photo.Id">
+      <div class="column">
+        <PhotoThumbnail :photo="photo"/>
+      </div>
     </div>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { Photo } from "../types";
+import { Album } from "../types";
+import PhotoThumbnail from "./PhotoThumbnail.vue";
 
-@Component
+@Component({
+  components: {
+    PhotoThumbnail
+  }
+})
 export default class PhotoGrid extends Vue {
-    @Prop()
-    photos!: Photo[];
+  @Prop()
+  album!: Album[];
 
-    mounted() {
-
-    }
+  mounted() {}
 }
 </script>
 
 <style>
-
 </style>
