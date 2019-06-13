@@ -7,6 +7,10 @@ namespace luciadominguez.web.domain
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Title { get; set; }
+        public string Description { get; set; }
+        public string Url { get; set; }
+
+        public virtual Photo Cover { get; set; }
 
         public DateTime CreationDate { get; set; } = DateTime.Now;
 

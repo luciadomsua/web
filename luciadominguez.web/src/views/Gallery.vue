@@ -29,7 +29,8 @@ import Toolbox from "../tools/toolbox";
   }
 })
 export default class Gallery extends Vue {
-  @Getter("albums/all") albums!: Album[];
+  @Getter("albums/all")
+  albums!: Album[];
 
   mounted(): void {}
 }
