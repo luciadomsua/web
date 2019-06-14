@@ -1,12 +1,7 @@
 <template>
   <div class="album-card">
     <router-link :to="{ name: 'album', params: { id: album.Id } }">
-      <div class="album-image">
-        <img :src="album.Cover.Url" :alt="album.Description">
-      </div>
-      <div class="album-title">
-        <span>{{ album.Title }}</span>
-      </div>
+      <Polaroid :photo="albumCover" :title="albumTitle"/>
     </router-link>
   </div>
 </template>
@@ -14,36 +9,29 @@
 <script lang="ts">
 import { Getter } from "vuex-class";
 import { Prop, Component, Vue } from "vue-property-decorator";
-import { Album } from "../types";
+import { Album, Photo } from "../types";
+import Polaroid from "@/components/Polaroid.vue";
 
-@Component
+@Component({
+  components: {
+    Polaroid
+  }
+})
 export default class AlbumThumbnail extends Vue {
-  @Prop() album!: Album;
+  @Prop()
+  album!: Album;
 
   mounted(): void {}
+
+  get albumCover(): Photo {
+    return this.album.Cover || this.album.Photos[0];
+  }
+
+  get albumTitle(): string {
+    return this.album.Title;
+  }
 }
 </script>
 
 <style lang="scss">
-.album-card {
-  max-width: 200px;
-  background-color: rgb(255, 255, 255);
-  padding: 5px 5px 5px;
-  border: 1px solid rgb(235, 235, 235);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  z-index: 1;
-
-  a {
-    text-decoration: none;
-    color: #333333;
-  }
-
-  .album-image {
-    opacity: 0.5;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-}
 </style>

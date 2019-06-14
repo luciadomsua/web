@@ -3,15 +3,7 @@
     <div class="album-slider">
       <AlbumSlider :albums="albums"/>
     </div>
-    <div class="album-slider">
-      <AlbumSlider :albums="albums"/>
-    </div>
-    <div class="album-slider">
-      <AlbumSlider :albums="albums"/>
-    </div>
-    <div class="album-slider">
-      <AlbumSlider :albums="albums"/>
-    </div>
+    <router-view/>
   </div>
 </template>
 

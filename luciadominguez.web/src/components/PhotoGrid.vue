@@ -1,8 +1,8 @@
 <template>
   <div class="photo-grid">
-    <div class="columns" v-for="photo in album.Photos" :key="photo.Id">
-      <div class="column">
-        <PhotoThumbnail :photo="photo"/>
+    <div class="columns">
+      <div class="column" v-for="photo in album.Photos" :key="photo.Id">
+        <Polaroid :photo="photo"/>
       </div>
     </div>
   </div>
@@ -11,11 +11,11 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Album } from "../types";
-import PhotoThumbnail from "./PhotoThumbnail.vue";
+import Polaroid from "./Polaroid.vue";
 
 @Component({
   components: {
-    PhotoThumbnail
+    Polaroid
   }
 })
 export default class PhotoGrid extends Vue {
@@ -26,5 +26,12 @@ export default class PhotoGrid extends Vue {
 }
 </script>
 
-<style>
+<style lang="scss">
+.columns {
+  flex-flow: row wrap;
+
+  .column {
+    width: 25%;
+  }
+}
 </style>

@@ -27,7 +27,7 @@ export default class AlbumView extends Vue {
   album!: Album;
   cover!: Photo;
 
-  mounted() {
+  created() {
     const albumId: string = this.$route.params.id;
     this.album = this.$store.getters["albums/byId"](albumId);
     this.cover = this.album.Cover || this.album.Photos[0];

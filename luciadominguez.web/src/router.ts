@@ -4,6 +4,7 @@ import Home from '@/views/Home.vue'
 import About from '@/views/About.vue';
 import Gallery from '@/views/Gallery.vue';
 import AlbumView from '@/views/Album.vue';
+import PhotoView from '@/views/Photo.vue';
 
 Vue.use(Router);
 
@@ -28,7 +29,15 @@ const galleryRoute: RouteConfig = {
             path: "album/:id",
             name: "album",
             component: AlbumView,
-            props: true
+            props: true,
+            children: [
+                {
+                    path: "photo/:id",
+                    name: "photo",
+                    component: PhotoView,
+                    props: true
+                }
+            ]
         }
     ]
 };

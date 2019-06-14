@@ -1,20 +1,19 @@
 <template>
-  <div class="photo">
-    <div class="photo-container">
-      <div class="photo-card">
-        <div class="photo-image">
-          <img :src="photo.Url" :alt="photo.Title">
-        </div>
-      </div>
-    </div>
+  <div class="photo-large">
+    <Polaroid :photo="photo" :title="photo.Title"/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Photo } from "../types";
+import Polaroid from "@/components/Polaroid.vue";
 
-@Component
+@Component({
+  components: {
+    Polaroid
+  }
+})
 export default class PhotoLarge extends Vue {
   @Prop()
   photo!: Photo;

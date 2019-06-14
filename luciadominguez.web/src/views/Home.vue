@@ -1,20 +1,32 @@
 <template>
-    <div class="home">
-        <Hero/>
-    </div>
+  <div class="home">
+    <Hero/>
+    <AlbumSlider v-for="album in albums" :key="album.Id" :album="album"/>
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import Hero from "@/components/Hero.vue";
+import AlbumSlider from "@/components/AlbumSlider.vue";
+import { Album } from "../types";
 
 @Component({
-    components: {
-        Hero
-    }
+  components: {
+    Hero,
+    AlbumSlider
+  }
 })
 export default class Home extends Vue {
-    mounted(): void {}
+  albums!: Album[];
+
+  created(): void {
+    this.albums = this.$store.getters["albums/all"];
+  }
+
+  mounted(): void {
+    
+  }
 }
 </script>

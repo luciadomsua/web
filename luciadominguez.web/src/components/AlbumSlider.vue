@@ -1,9 +1,8 @@
 <template>
   <div class="album-slider">
+    <h1> {{ album.Title }} </h1>
     <div class="slider-container">
-      <div v-for="album in albums" :key="album.Id" class="album-container">
-        <AlbumThumbnail :album="album"/>
-      </div>
+      <AlbumThumbnail :album="album" class="album-container"/>
     </div>
   </div>
 </template>
@@ -21,13 +20,21 @@ import Toolbox from "../tools/toolbox";
   }
 })
 export default class AlbumSlider extends Vue {
-  @Prop() albums!: Album[];
+  @Prop()
+  album!: Album;
+
+  created(): void {}
 
   mounted(): void {}
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+h1 {
+  text-align: left;
+  font-size: 32px;
+}
+
 .slider-container {
   display: flex;
   flex-flow: row nowrap;
@@ -39,7 +46,6 @@ export default class AlbumSlider extends Vue {
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     transform: rotate(-2deg);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 

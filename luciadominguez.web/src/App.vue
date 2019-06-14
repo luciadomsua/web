@@ -39,7 +39,7 @@ export default class App extends Vue {
   color: #333333;
 
   .wrapper {
-    padding-top: calc(4rem + 50px);
+    padding-top: $navHeight;
     margin: 0 auto;
     max-width: $maxWidth;
     width: 100%;

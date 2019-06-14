@@ -24,6 +24,7 @@ export interface Album {
     Photos?: Photo[] | null;
     Cover?: Photo;
     Url?: string;
+    Category?: Category;
 }
 
 export interface Photo {
@@ -33,11 +34,12 @@ export interface Photo {
     Extension?: string;
     Height?: number;
     Width?: number;
-    Price?: number;
+    Price?: number | string;
     CreationDate?: Date;
     Album?: Album | null;
     Tags?: Tag[] | null;
     Url?: string;
+    Comments?: Comment[]
 }
 
 export interface Tag {
@@ -46,6 +48,15 @@ export interface Tag {
     CreationDate?: Date;
 }
 
+export interface Comment {
+    Author: string;
+    CreationDate: Date;
+    Text: string;
+}
+
+export interface Category {
+    Name: string;
+}
 // Others
 export interface Load {
     loading: boolean,

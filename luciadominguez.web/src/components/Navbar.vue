@@ -83,7 +83,7 @@ export default class Navbar extends Vue {
     width: 100%;
     max-width: $maxWidth;
     background-color: $primary;
-    height: $navHeigth;
+    height: $navHeight;
 
     .navbar-item img {
       max-height: 3rem;
