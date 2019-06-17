@@ -6,7 +6,7 @@ import TagsService from '@/services/tags';
 const namespaced = true;
 
 const state: TagsState = {
-    tags: Toolbox.mockTags(),
+    tags: [],
     loading: true,
     loaded: false,
     error: null

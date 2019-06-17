@@ -5,6 +5,7 @@ import About from '@/views/About.vue';
 import Gallery from '@/views/Gallery.vue';
 import AlbumView from '@/views/Album.vue';
 import PhotoView from '@/views/Photo.vue';
+import AdminView from './views/Admin.vue';
 
 Vue.use(Router);
 
@@ -23,24 +24,28 @@ const aboutRoute: RouteConfig = {
 const galleryRoute: RouteConfig = {
     path: "/gallery",
     name: "gallery",
-    component: Gallery,
-    children: [
-        {
-            path: "album/:id",
-            name: "album",
-            component: AlbumView,
-            props: true,
-            children: [
-                {
-                    path: "photo/:id",
-                    name: "photo",
-                    component: PhotoView,
-                    props: true
-                }
-            ]
-        }
-    ]
+    component: Gallery
 };
+
+const albumRoute: RouteConfig = {
+    path: "/album/:albumId",
+    name: "album",
+    props: true,
+    component: AlbumView
+}
+
+const photoRoute: RouteConfig = {
+    path: "/photo/:photoId",
+    name: "photo",
+    props: true,
+    component: PhotoView
+}
+
+const adminRoute: RouteConfig = {
+    path: "/admin",
+    name: "admin",
+    component: AdminView
+}
 
 const fallbackRoute: RouteConfig = {
     path: "*",
@@ -51,12 +56,16 @@ const routes: RouteConfig[] = [
     homeRoute,
     aboutRoute,
     galleryRoute,
+    albumRoute,
+    photoRoute,
+    adminRoute,
     fallbackRoute
 ];
 
 const routerOptions: RouterOptions = {
-    routes,
-    fallback: true
+    mode: "hash",
+    base: "/",
+    routes
 };
 
 export default new Router(routerOptions);

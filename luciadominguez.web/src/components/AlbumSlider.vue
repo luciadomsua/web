@@ -1,6 +1,6 @@
 <template>
   <div class="album-slider">
-    <h1> {{ album.Title }} </h1>
+    <h1>{{ title }}</h1>
     <div class="slider-container">
       <AlbumThumbnail :album="album" class="album-container"/>
     </div>
@@ -10,7 +10,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { Prop, Component } from "vue-property-decorator";
-import { Album } from "../types";
+import { Album, Category } from "../types";
 import AlbumThumbnail from "./AlbumThumbnail.vue";
 import Toolbox from "../tools/toolbox";
 
@@ -22,6 +22,10 @@ import Toolbox from "../tools/toolbox";
 export default class AlbumSlider extends Vue {
   @Prop()
   album!: Album;
+
+  get title(): string {
+    return this.album.title || "Test";
+  }
 
   created(): void {}
 

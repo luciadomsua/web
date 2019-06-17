@@ -2,7 +2,7 @@
   <div id="navbar-container">
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <router-link to="/" class="navbar-item" href="https://bulma.io">
+        <router-link to="/" class="navbar-item">
           <img src="@/assets/logo.svg" width="200" height="50">
         </router-link>
 
@@ -23,9 +23,9 @@
         <div class="navbar-start">
           <router-link to="/" class="navbar-item">Home</router-link>
 
-          <router-link to="gallery" class="navbar-item">Gallery</router-link>
+          <router-link to="/gallery" class="navbar-item">Gallery</router-link>
 
-          <router-link to="about" class="navbar-item">About</router-link>
+          <router-link to="/about" class="navbar-item">About</router-link>
 
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">More</a>
@@ -56,8 +56,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class Navbar extends Vue {

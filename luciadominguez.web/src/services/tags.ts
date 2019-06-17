@@ -2,27 +2,29 @@ import { Tag } from '@/types';
 import Api from '@/tools/api';
 import Toolbox from '@/tools/toolbox';
 
-export default class TagsService {
+export default class TagsService
+{
     private _api: Api;
 
-    public constructor() {
+    public constructor()
+    {
         this._api = new Api();
     }
 
-    async getTags(): Promise<Tag[]> {
-        const response = Toolbox.mockTags(); //await this._api.getTags();
+    async getTags(): Promise<Tag[]>
+    {
+        const response = await this._api.getTags(); //Toolbox.mockTags();
 
-        let tags: Tag[] = [];
-        tags = Object.assign(tags, response);
+        const tags = Object.assign([], response);
 
         return tags;
     }
 
-    async getTag(id: string): Promise<Tag> {
-        const response = Toolbox.mockTags().filter(x => x.Id === id); //await this._api.getTag(id);
+    async getTag(id: string): Promise<Tag>
+    {
+        const response = await this._api.getTag(id); //Toolbox.mockTags().filter(x => x.Id === id)[0];
 
-        let tag: Tag = {};
-        tag = Object.assign(tag, response);
+        const tag = Object.assign({}, response);
 
         return tag;
     }

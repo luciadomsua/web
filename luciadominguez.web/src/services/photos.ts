@@ -2,27 +2,41 @@ import { Photo } from '@/types';
 import Api from '@/tools/api';
 import Toolbox from '@/tools/toolbox';
 
-export default class PhotosService {
+export default class PhotosService
+{
     private _api: Api;
 
-    constructor() {
+    constructor()
+    {
         this._api = new Api();
     }
 
-    async getPhotos(): Promise<Photo[]> {
-        const response = Toolbox.mockPhotos(); //await this._api.getPhotos();
+    async getPhotos(): Promise<Photo[]>
+    {
+        let response;
+        try {
+            response = await this._api.getPhotos();
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
 
-        let photos: Photo[] = [];
-        photos = Object.assign(photos, response);
+        const photos = Object.assign([], response);
 
-        return response;
+        return photos;
     }
 
-    async getPhoto(id: string): Promise<Photo> {
-        const response = Toolbox.mockPhotos().filter(x => x.Id === id) //await this._api.getPhoto(id);
+    async getPhoto(id: string): Promise<Photo>
+    {
+        let response;
+        try {
+            response = await this._api.getPhoto(id);
+            console.log(response);
+        } catch (error) {
+            console.log(error)
+        }
 
-        let photo: Photo = {};
-        photo = Object.assign(photo, response);
+        const photo = Object.assign({}, response);
 
         return photo;
     }

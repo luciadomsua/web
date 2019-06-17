@@ -1,11 +1,12 @@
-﻿using luciadominguez.web.database;
+using luciadominguez.web.database;
 using luciadominguez.web.domain;
-
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,10 +17,27 @@ namespace luciadominguez.web.Controllers
     public class AlbumsController : ControllerBase
     {
         private readonly SQLiteContext _dbContext;
+        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly string _localAlbumDirectory;
+        private readonly string _serverAlbumDirectory;
 
-        public AlbumsController(SQLiteContext dbContext)
+        public AlbumsController(SQLiteContext dbContext, IHostingEnvironment environment)
         {
             _dbContext = dbContext;
+            _hostingEnvironment = environment;
+            _serverAlbumDirectory = Path.Combine("assets", "albums");
+            _localAlbumDirectory = Path.Combine(_hostingEnvironment.WebRootPath, _serverAlbumDirectory);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Album>>> GetAllAsync()
+        {
+            List<Album> albums = await _dbContext.Albums
+                .Take(10)
+                .Include(x => x.Photos)
+                .ToListAsync();
+
+            return Ok(albums);
         }
 
         [HttpGet("{id}")]
@@ -151,6 +169,56 @@ namespace luciadominguez.web.Controllers
             await _dbContext.SaveChangesAsync();
 
             // Todo ha ido bien
+            return Ok();
+        }
+
+        [HttpPost("add")]
+        public async Task<ActionResult> AddAlbumAsync(IFormCollection form)
+        {
+            string albumTitle = form["albumTitle"];
+            string albumDescription = form["albumDescription"];
+
+            string uploads = Path.Combine(_localAlbumDirectory, albumTitle);
+
+            Album album = new Album
+            {
+                CreationDate = DateTime.UtcNow,
+                Title = albumTitle,
+                Description = albumDescription,
+                Url = Path.Combine(_serverAlbumDirectory, albumTitle),
+                Photos = new List<Photo>()
+            };
+
+            Directory.CreateDirectory(uploads);
+
+            foreach (IFormFile file in form.Files)
+            {
+                if (file.Length == 0)
+                {
+                    continue;
+                }
+
+                string filePath = Path.Combine(uploads, file.FileName);
+
+                Photo photo = new Photo()
+                {
+                    Album = album,
+                    CreationDate = DateTime.UtcNow,
+                    FileName = file.FileName,
+                    Url = Path.Combine(album.Url, file.FileName)
+                };
+
+                album.Photos.Add(photo);
+
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(fileStream);
+                }
+            }
+
+            await _dbContext.Albums.AddAsync(album);
+            await _dbContext.SaveChangesAsync();
+
             return Ok();
         }
     }

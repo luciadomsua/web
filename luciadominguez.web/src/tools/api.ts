@@ -1,11 +1,6 @@
 export default class Api
 {
-    private _url: string = "http://localhost:8080/";
-
-    public constructor()
-    {
-
-    }
+    private _url: string = "api/";
 
     public async getAlbums(): Promise<any>
     {
@@ -17,7 +12,7 @@ export default class Api
 
     public async getAlbum(id: string): Promise<any>
     {
-        const response = await fetch(this._url + "albums/" + id);
+        const response = await fetch(this._url + "albums/" + id, { method: "GET" });
         const json = await response.json();
 
         return json;
@@ -25,7 +20,7 @@ export default class Api
 
     public async getPhotos(): Promise<any>
     {
-        const response = await fetch(this._url + "photos");
+        const response = await fetch(this._url + "photos", { method: "GET" });
         const json = await response.json();
 
         return json;
@@ -33,7 +28,7 @@ export default class Api
 
     public async getPhoto(id: string): Promise<any>
     {
-        const response = await fetch(this._url + "photos/" + id);
+        const response = await fetch(this._url + "photos/" + id, { method: "GET" });
         const json = await response.json();
 
         return json;
@@ -41,7 +36,7 @@ export default class Api
 
     public async getTags(): Promise<any>
     {
-        const response = await fetch(this._url + "tags");
+        const response = await fetch(this._url + "tags", { method: "GET" });
         const json = await response.json();
 
         return json;
@@ -49,7 +44,7 @@ export default class Api
 
     public async getTag(id: string): Promise<any>
     {
-        const response = await fetch(this._url + "tags/" + id);
+        const response = await fetch(this._url + "tags/" + id, { method: "GET" });
         const json = await response.json();
 
         return json;

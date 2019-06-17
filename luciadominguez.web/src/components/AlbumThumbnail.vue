@@ -1,6 +1,6 @@
 <template>
   <div class="album-card">
-    <router-link :to="{ name: 'album', params: { id: album.Id } }">
+    <router-link :to="{ name: 'album', params: { albumId: album.Id } }">
       <Polaroid :photo="albumCover" :title="albumTitle"/>
     </router-link>
   </div>
@@ -24,11 +24,11 @@ export default class AlbumThumbnail extends Vue {
   mounted(): void {}
 
   get albumCover(): Photo {
-    return this.album.Cover || this.album.Photos[0];
+    return this.album.cover || this.album.photos[0];
   }
 
   get albumTitle(): string {
-    return this.album.Title;
+    return this.album.title;
   }
 }
 </script>

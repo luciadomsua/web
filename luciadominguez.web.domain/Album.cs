@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace luciadominguez.web.domain
@@ -10,10 +10,9 @@ namespace luciadominguez.web.domain
         public string Description { get; set; }
         public string Url { get; set; }
 
-        public virtual Photo Cover { get; set; }
-
         public DateTime CreationDate { get; set; } = DateTime.Now;
 
+        public virtual Photo Cover { get; set; }
         public virtual List<Photo> Photos { get; set; } = new List<Photo>();
     }
 }

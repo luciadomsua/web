@@ -1,7 +1,7 @@
 <template>
   <div class="photo-grid">
     <div class="columns">
-      <div class="column" v-for="photo in album.Photos" :key="photo.Id">
+      <div class="column" v-for="photo in album.photos" :key="photo.id">
         <Polaroid :photo="photo"/>
       </div>
     </div>

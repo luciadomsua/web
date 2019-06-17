@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,7 +18,8 @@ namespace luciadominguez.web.domain
         public DateTime CreationDate { get; set; }
 
         public virtual Album Album { get; set; }
-        public virtual List<PhotoTag> PhotoTags { get; set; }
+        public virtual List<PhotoTag> PhotoTags { get; set; } = new List<PhotoTag>();
+        public virtual List<Comment> Comments { get; set; } = new List<Comment>();
 
         public List<Tag> GetTags()
         {

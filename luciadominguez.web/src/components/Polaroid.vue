@@ -1,9 +1,9 @@
 <template>
-  <div class="polaroid" @click="photoClicked(photo)">
+  <div class="polaroid">
     <div class="image-container">
       <img :src="url" :alt="photoTitle">
     </div>
-    <div class="image-meta">
+    <div class="image-meta" v-if="!noTitle">
       <span>{{ photoTitle }}</span>
     </div>
   </div>
@@ -21,18 +21,15 @@ export default class Polaroid extends Vue {
   @Prop()
   title!: string;
 
-  mounted() {}
+  @Prop({ default: false })
+  noTitle!: boolean;
 
   get url(): string {
-    return this.photo.Url;
+    return this.photo.url;
   }
 
   get photoTitle(): string {
-    return this.title || this.photo.Title;
-  }
-
-  photoClicked(photo: Photo) {
-    this.$router.replace({ name: "photo", params: { id: photo.Id } });
+    return this.photo.title;
   }
 }
 </script>

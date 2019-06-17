@@ -6,6 +6,7 @@
     border: $polaroidBorder;
     box-shadow: $polaroidBoxShadow;
     cursor: pointer;
+    border-radius: 2px;
 
     .image-container {
         // display: flex;

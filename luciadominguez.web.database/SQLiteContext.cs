@@ -1,4 +1,4 @@
-﻿using luciadominguez.web.domain;
+using luciadominguez.web.domain;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -27,8 +27,28 @@ namespace luciadominguez.web.database
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Photo>()
+                .Property(x => x.Id)
+                .HasConversion<string>();
+
+            builder.Entity<Album>()
+                .Property(x => x.Id)
+                .HasConversion<string>();
+
+            builder.Entity<Tag>()
+                .Property(x => x.Id)
+                .HasConversion<string>();
+
+            builder.Entity<Comment>()
+                .Property(x => x.Id)
+                .HasConversion<string>();
+
+            builder.Entity<Photo>()
                 .HasOne(photo => photo.Album)
                 .WithMany(album => album.Photos);
+
+            builder.Entity<Photo>()
+                .HasMany(x => x.Comments)
+                .WithOne(x => x.Photo);
 
             builder.Entity<Album>()
                 .HasMany(album => album.Photos)
@@ -41,6 +61,10 @@ namespace luciadominguez.web.database
             builder.Entity<Tag>()
                 .HasMany(tag => tag.PhotoTags)
                 .WithOne(photoTag => photoTag.Tag);
+
+            builder.Entity<Comment>()
+                .HasOne(x => x.Photo)
+                .WithMany(x => x.Comments);
         }
     }
 }

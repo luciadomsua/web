@@ -1,43 +1,71 @@
 <template>
   <div class="photo-view">
-    <div class="columns">
-      <div class="column">
-        <PhotoLarge :photo="photo"/>
-      </div>
-      <div class="column">
-        <Comments :comments="comments"/>
-      </div>
+    <div class="big-picture" @click="toggleComments">
+      <Polaroid :photo="photo"/>
+    </div>
+    <div class="comments-view">
+      <Comments :comments="comments"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Photo } from "../types";
-import PhotoLarge from "@/components/PhotoLarge.vue";
+import { Photo, Comment } from "../types";
+import Polaroid from "@/components/Polaroid.vue";
 import Comments from "@/components/Comments.vue";
 
 @Component({
   components: {
-    PhotoLarge,
+    Polaroid,
     Comments
   }
 })
 export default class PhotoView extends Vue {
   photo!: Photo;
+  photoId!: string;
 
-  get comments() {
-    return this.photo.Comments;
+  get comments(): Comment[] | null {
+    return this.photo.comments;
   }
 
-  created() {
-    const photoId = this.$route.params.id;
-    this.photo = this.$store.getters["photos/byId"](photoId);
+  toggleComments(): void {
+    this.$router.back();
   }
 
-  mounted() {}
+  created(): void {
+    this.photoId = this.$route.params.photoId;
+  }
+
+  beforeMount(): void {
+    this.photo = this.$store.getters["photos/byId"](this.photoId);
+  }
+
+  mounted(): void {}
 }
 </script>
 
 <style lang="scss">
+.photo-view {
+  margin-top: 25px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .big-picture {
+    width: 49%;
+
+    .polaroid {
+      width: 100%;
+      img {
+        opacity: 1;
+      }
+    }
+  }
+
+  .comments-view {
+    width: 50%;
+  }
+}
 </style>

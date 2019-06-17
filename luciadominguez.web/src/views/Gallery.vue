@@ -1,9 +1,9 @@
 <template>
   <div class="gallery">
-    <div class="album-slider">
-      <AlbumSlider :albums="albums"/>
+    <div class="album-slider" v-for="album in albums" :key="album.id">
+      <AlbumSlider :album="album"/>
     </div>
-    <router-view/>
+    <router-view :key="$route.fullPath"/>
   </div>
 </template>
 
@@ -21,8 +21,11 @@ import Toolbox from "../tools/toolbox";
   }
 })
 export default class Gallery extends Vue {
-  @Getter("albums/all")
   albums!: Album[];
+
+  created(): void {
+    this.albums = this.$store.getters["albums/all"];
+  }
 
   mounted(): void {}
 }

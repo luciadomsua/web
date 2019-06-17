@@ -1,10 +1,12 @@
-﻿using luciadominguez.web.database;
+using luciadominguez.web.database;
 using luciadominguez.web.domain;
-
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,10 +17,12 @@ namespace luciadominguez.web.Controllers
     public class PhotosController : ControllerBase
     {
         private readonly SQLiteContext _dbContext;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public PhotosController(SQLiteContext dbContext)
+        public PhotosController(SQLiteContext dbContext, IHostingEnvironment environment)
         {
-            _dbContext = dbContext;   
+            _dbContext = dbContext;
+            _hostingEnvironment = environment;
         }
 
         [HttpGet("{id}")]
@@ -92,6 +96,28 @@ namespace luciadominguez.web.Controllers
             await _dbContext.SaveChangesAsync();
 
             // Todo ha ido bien
+            return Ok();
+        }
+
+        [HttpPost("add")]
+        public async Task<ActionResult> AddMultiple(IFormCollection form)
+        {
+            string uploads = Path.Combine(_hostingEnvironment.WebRootPath, "assets", "albums", "test");
+
+            foreach (IFormFile file in form.Files)
+            {
+                if (file.Length == 0)
+                {
+                    continue;
+                }
+
+                string filePath = Path.Combine(uploads, file.FileName);
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(fileStream);
+                }
+            }
+
             return Ok();
         }
     }
