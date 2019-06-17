@@ -44,9 +44,9 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class AddAlbumView extends Vue {
-  files: FormData;
-  albumTitle: string;
-  albumDescription: string;
+  files: FormData = new FormData();
+  albumTitle: string = "";
+  albumDescription: string = "";
 
   created() {
     this.files = new FormData();
