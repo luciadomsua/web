@@ -32,6 +32,16 @@ export default class Gallery extends Vue {
 </script>
 
 <style lang="scss">
+.gallery {
+  margin-top: 25px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  .album-slider {
+    min-width: 33%;
+  }
+}
 .album-slider {
   margin-bottom: 30px;
 }

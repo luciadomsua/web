@@ -1,6 +1,6 @@
 <template>
   <div class="album-card">
-    <router-link :to="{ name: 'album', params: { albumId: album.Id } }">
+    <router-link :to="{ name: 'album', params: { albumId: album.id } }">
       <Polaroid :photo="albumCover" :title="albumTitle"/>
     </router-link>
   </div>

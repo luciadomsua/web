@@ -1,117 +1,107 @@
 import { Photo, Album, Tag, Comment } from '@/types';
-export default class Toolbox
-{
-    public static mockPhotos(): Photo[]
-    {
+export default class Toolbox {
+    public static mockPhotos(): Photo[] {
         return [
             {
-                Id: "0", FileName: "Photo 00", Title: "Photo 00", Extension: "png",
-                CreationDate: new Date(), Height: 400, Width: 400, Album: null,
-                Price: "9.99", Tags: Toolbox.mockTags(), Comments: Toolbox.mockComments(),
-                Url: "https://via.placeholder.com/400x400"
+                id: "0", fileName: "Photo 00", title: "Photo 00", extension: "png",
+                creationDate: new Date(), height: 400, width: 400, album: null,
+                price: "9.99", tags: Toolbox.mockTags(), comments: Toolbox.mockComments(),
+                url: "https://via.placeholder.com/400x400"
             } as Photo,
             {
-                Id: "1", FileName: "Photo 01", Title: "Photo 01", Extension: "png",
-                CreationDate: new Date(), Height: 400, Width: 400, Album: null,
-                Price: "9.99", Tags: Toolbox.mockTags(), Comments: Toolbox.mockComments(),
-                Url: "https://via.placeholder.com/400x400"
+                id: "1", fileName: "Photo 01", title: "Photo 01", extension: "png",
+                creationDate: new Date(), height: 400, width: 400, album: null,
+                price: "9.99", tags: Toolbox.mockTags(), comments: Toolbox.mockComments(),
+                url: "https://via.placeholder.com/400x400"
             } as Photo,
             {
-                Id: "2", FileName: "Photo 02", Title: "Photo 02", Extension: "png",
-                CreationDate: new Date(), Height: 400, Width: 400, Album: null,
-                Price: "9.99", Tags: Toolbox.mockTags(), Comments: Toolbox.mockComments(),
-                Url: "https://via.placeholder.com/400x400"
+                id: "2", fileName: "Photo 02", title: "Photo 02", extension: "png",
+                creationDate: new Date(), height: 400, width: 400, album: null,
+                price: "9.99", tags: Toolbox.mockTags(), comments: Toolbox.mockComments(),
+                url: "https://via.placeholder.com/400x400"
             } as Photo,
             {
-                Id: "3", FileName: "Photo 03", Title: "Photo 03", Extension: "png",
-                CreationDate: new Date(), Height: 400, Width: 400, Album: null,
-                Price: "9.99", Tags: Toolbox.mockTags(), Comments: Toolbox.mockComments(),
-                Url: "https://via.placeholder.com/400x400"
+                id: "3", fileName: "Photo 03", title: "Photo 03", extension: "png",
+                creationDate: new Date(), height: 400, width: 400, album: null,
+                price: "9.99", tags: Toolbox.mockTags(), comments: Toolbox.mockComments(),
+                url: "https://via.placeholder.com/400x400"
             } as Photo,
             {
-                Id: "4", FileName: "Photo 04", Title: "Photo 04", Extension: "png",
-                CreationDate: new Date(), Height: 400, Width: 400, Album: null,
-                Price: "9.99", Tags: Toolbox.mockTags(), Comments: Toolbox.mockComments(),
-                Url: "https://via.placeholder.com/400x400"
+                id: "4", fileName: "Photo 04", title: "Photo 04", extension: "png",
+                creationDate: new Date(), height: 400, width: 400, album: null,
+                price: "9.99", tags: Toolbox.mockTags(), comments: Toolbox.mockComments(),
+                url: "https://via.placeholder.com/400x400"
             } as Photo,
             {
-                Id: "5", FileName: "Photo 05", Title: "Photo 05", Extension: "png",
-                CreationDate: new Date(), Height: 400, Width: 400, Album: null,
-                Price: "9.99", Tags: Toolbox.mockTags(), Comments: Toolbox.mockComments(),
-                Url: "https://via.placeholder.com/400x400"
+                id: "5", fileName: "Photo 05", title: "Photo 05", extension: "png",
+                creationDate: new Date(), height: 400, width: 400, album: null,
+                price: "9.99", tags: Toolbox.mockTags(), comments: Toolbox.mockComments(),
+                url: "https://via.placeholder.com/400x400"
             } as Photo,
             {
-                Id: "6", FileName: "Photo 06", Title: "Photo 06", Extension: "png",
-                CreationDate: new Date(), Height: 400, Width: 400, Album: null,
-                Price: "9.99", Tags: Toolbox.mockTags(), Comments: Toolbox.mockComments(),
-                Url: "https://via.placeholder.com/400x400"
+                id: "6", fileName: "Photo 06", title: "Photo 06", extension: "png",
+                creationDate: new Date(), height: 400, width: 400, album: null,
+                price: "9.99", tags: Toolbox.mockTags(), comments: Toolbox.mockComments(),
+                url: "https://via.placeholder.com/400x400"
             } as Photo,
             {
-                Id: "7", FileName: "Photo 07", Title: "Photo 07", Extension: "png",
-                CreationDate: new Date(), Height: 400, Width: 400, Album: null,
-                Price: "9.99", Tags: Toolbox.mockTags(), Comments: Toolbox.mockComments(),
-                Url: "https://via.placeholder.com/400x400"
+                id: "7", fileName: "Photo 07", title: "Photo 07", extension: "png",
+                creationDate: new Date(), height: 400, width: 400, album: null,
+                price: "9.99", tags: Toolbox.mockTags(), comments: Toolbox.mockComments(),
+                url: "https://via.placeholder.com/400x400"
             } as Photo,
             {
-                Id: "8", FileName: "Photo 08", Title: "Photo 08", Extension: "png",
-                CreationDate: new Date(), Height: 400, Width: 400, Album: null,
-                Price: "9.99", Tags: Toolbox.mockTags(), Comments: Toolbox.mockComments(),
-                Url: "https://via.placeholder.com/400x400"
+                id: "8", fileName: "Photo 08", title: "Photo 08", extension: "png",
+                creationDate: new Date(), height: 400, width: 400, album: null,
+                price: "9.99", tags: Toolbox.mockTags(), comments: Toolbox.mockComments(),
+                url: "https://via.placeholder.com/400x400"
             } as Photo,
             {
-                Id: "9", FileName: "Photo 09", Title: "Photo 09", Extension: "png",
-                CreationDate: new Date(), Height: 400, Width: 400, Album: null,
-                Price: "9.99", Tags: Toolbox.mockTags(), Comments: Toolbox.mockComments(),
-                Url: "https://via.placeholder.com/400x400"
+                id: "9", fileName: "Photo 09", title: "Photo 09", extension: "png",
+                creationDate: new Date(), height: 400, width: 400, album: null,
+                price: "9.99", tags: Toolbox.mockTags(), comments: Toolbox.mockComments(),
+                url: "https://via.placeholder.com/400x400"
             } as Photo
         ] as Photo[]
     }
 
-    public static mockAlbums(): Album[]
-    {
+    public static mockalbums(): Album[] {
         return [
-            { Id: "0", CreationDate: new Date(), Title: "Album 00", Photos: Toolbox.mockPhotos(), Cover: Toolbox.mockPhotos()[0], Category: { Name: "Test category" } } as Album,
-            { Id: "1", CreationDate: new Date(), Title: "Album 01", Photos: Toolbox.mockPhotos(), Cover: Toolbox.mockPhotos()[1], Category: { Name: "Test category" } } as Album,
-            { Id: "2", CreationDate: new Date(), Title: "Album 02", Photos: Toolbox.mockPhotos(), Cover: Toolbox.mockPhotos()[2], Category: { Name: "Test category" } } as Album,
-            { Id: "3", CreationDate: new Date(), Title: "Album 03", Photos: Toolbox.mockPhotos(), Cover: Toolbox.mockPhotos()[3], Category: { Name: "Test category" } } as Album,
-            { Id: "4", CreationDate: new Date(), Title: "Album 04", Photos: Toolbox.mockPhotos(), Cover: Toolbox.mockPhotos()[4], Category: { Name: "Test category" } } as Album,
-            { Id: "5", CreationDate: new Date(), Title: "Album 05", Photos: Toolbox.mockPhotos(), Cover: Toolbox.mockPhotos()[5], Category: { Name: "Test category" } } as Album,
-            { Id: "6", CreationDate: new Date(), Title: "Album 06", Photos: Toolbox.mockPhotos(), Cover: Toolbox.mockPhotos()[6], Category: { Name: "Test category" } } as Album,
-            { Id: "7", CreationDate: new Date(), Title: "Album 07", Photos: Toolbox.mockPhotos(), Cover: Toolbox.mockPhotos()[7], Category: { Name: "Test category" } } as Album,
-            { Id: "8", CreationDate: new Date(), Title: "Album 08", Photos: Toolbox.mockPhotos(), Cover: Toolbox.mockPhotos()[8], Category: { Name: "Test category" } } as Album,
-            { Id: "9", CreationDate: new Date(), Title: "Album 09", Photos: Toolbox.mockPhotos(), Cover: Toolbox.mockPhotos()[9], Category: { Name: "Test category" } } as Album,
+            { id: "0", description: "", creationDate: new Date(), title: "album 00", photos: Toolbox.mockPhotos(), cover: Toolbox.mockPhotos()[0], category: { name: "Test category" } } as Album,
+            { id: "1", description: "", creationDate: new Date(), title: "album 01", photos: Toolbox.mockPhotos(), cover: Toolbox.mockPhotos()[1], category: { name: "Test category" } } as Album,
+            { id: "2", description: "", creationDate: new Date(), title: "album 02", photos: Toolbox.mockPhotos(), cover: Toolbox.mockPhotos()[2], category: { name: "Test category" } } as Album,
+            { id: "3", description: "", creationDate: new Date(), title: "album 03", photos: Toolbox.mockPhotos(), cover: Toolbox.mockPhotos()[3], category: { name: "Test category" } } as Album,
+            { id: "4", description: "", creationDate: new Date(), title: "album 04", photos: Toolbox.mockPhotos(), cover: Toolbox.mockPhotos()[4], category: { name: "Test category" } } as Album,
+            { id: "5", description: "", creationDate: new Date(), title: "album 05", photos: Toolbox.mockPhotos(), cover: Toolbox.mockPhotos()[5], category: { name: "Test category" } } as Album,
+            { id: "6", description: "", creationDate: new Date(), title: "album 06", photos: Toolbox.mockPhotos(), cover: Toolbox.mockPhotos()[6], category: { name: "Test category" } } as Album,
+            { id: "7", description: "", creationDate: new Date(), title: "album 07", photos: Toolbox.mockPhotos(), cover: Toolbox.mockPhotos()[7], category: { name: "Test category" } } as Album,
+            { id: "8", description: "", creationDate: new Date(), title: "album 08", photos: Toolbox.mockPhotos(), cover: Toolbox.mockPhotos()[8], category: { name: "Test category" } } as Album,
+            { id: "9", description: "", creationDate: new Date(), title: "album 09", photos: Toolbox.mockPhotos(), cover: Toolbox.mockPhotos()[9], category: { name: "Test category" } } as Album,
         ] as Album[]
     }
 
-    public static mockTags(): Tag[]
-    {
+    public static mockTags(): Tag[] {
         return [
-            { Id: "0", Name: "Tag 00", CreationDate: new Date() } as Tag,
-            { Id: "1", Name: "Tag 01", CreationDate: new Date() } as Tag,
-            { Id: "2", Name: "Tag 02", CreationDate: new Date() } as Tag,
-            { Id: "3", Name: "Tag 03", CreationDate: new Date() } as Tag,
-            { Id: "4", Name: "Tag 04", CreationDate: new Date() } as Tag,
-            { Id: "5", Name: "Tag 05", CreationDate: new Date() } as Tag,
-            { Id: "6", Name: "Tag 06", CreationDate: new Date() } as Tag,
-            { Id: "7", Name: "Tag 07", CreationDate: new Date() } as Tag,
-            { Id: "8", Name: "Tag 08", CreationDate: new Date() } as Tag,
-            { Id: "9", Name: "Tag 09", CreationDate: new Date() } as Tag,
+            { id: "0", name: "Tag 00", creationDate: new Date() } as Tag,
+            { id: "1", name: "Tag 01", creationDate: new Date() } as Tag,
+            { id: "2", name: "Tag 02", creationDate: new Date() } as Tag,
+            { id: "3", name: "Tag 03", creationDate: new Date() } as Tag,
+            { id: "4", name: "Tag 04", creationDate: new Date() } as Tag,
+            { id: "5", name: "Tag 05", creationDate: new Date() } as Tag,
+            { id: "6", name: "Tag 06", creationDate: new Date() } as Tag,
+            { id: "7", name: "Tag 07", creationDate: new Date() } as Tag,
+            { id: "8", name: "Tag 08", creationDate: new Date() } as Tag,
+            { id: "9", name: "Tag 09", creationDate: new Date() } as Tag,
         ] as Tag[]
     }
 
-    public static mockComments(): Comment[]
-    {
+    public static mockComments(): Comment[] {
         return [
-            { Id: "00", Author: "Author 00", Text: "Example comment 00", CreationDate: new Date() },
-            { Id: "01", Author: "Author 01", Text: "Example comment 01", CreationDate: new Date() },
-            { Id: "02", Author: "Author 02", Text: "Example comment 02", CreationDate: new Date() },
-            { Id: "03", Author: "Author 03", Text: "Example comment 03", CreationDate: new Date() },
-            { Id: "04", Author: "Author 04", Text: "Example comment 04", CreationDate: new Date() },
-            { Id: "05", Author: "Author 05", Text: "Example comment 05", CreationDate: new Date() },
-            { Id: "06", Author: "Author 06", Text: "Example comment 06", CreationDate: new Date() },
-            { Id: "07", Author: "Author 07", Text: "Example comment 07", CreationDate: new Date() },
-            { Id: "08", Author: "Author 08", Text: "Example comment 08", CreationDate: new Date() },
-            { Id: "09", Author: "Author 09", Text: "Example comment 09", CreationDate: new Date() }
+            { id: "00", author: "Anónimo", text: "Bonita foto!", creationDate: new Date().toLocaleDateString("es-ES") },
+            { id: "01", author: "Anónimo", text: "¡Que buen recuerdo!", creationDate: new Date().toLocaleDateString("es-ES") },
+            { id: "02", author: "Anónimo", text: "Esto es para el TFG?", creationDate: new Date().toLocaleDateString("es-ES") },
+            { id: "03", author: "Anónimo", text: "k xulaaa <3", creationDate: new Date().toLocaleDateString("es-ES") },
+            { id: "04", author: "Anónimo", text: "🤷🏻‍♂️", creationDate: new Date().toLocaleDateString("es-ES") },
         ] as Comment[];
     }
 }

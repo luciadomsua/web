@@ -20,16 +20,27 @@ export default class Hero extends Vue {
 #hero {
   width: 100%;
   background-color: $third;
-  height: 250px;
+  height: 350px;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  object-fit: cover;
+  display: flex;
+  position: relative;
+
+  img {
+    width: 100%;
+    flex-grow: 1;
+  }
 
   .hero-container {
     width: 100%;
     height: 100%;
     max-width: $maxWidth;
+    background-image: url("~@/assets/hero.jpg");
+    background-size: cover;
+    object-position: center;
   }
 }
 </style>

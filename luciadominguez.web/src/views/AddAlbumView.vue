@@ -68,8 +68,13 @@ export default class AddAlbumView extends Vue {
       method: "POST",
       body: this.files
     })
-      .then(response => response.json())
+      .then(response => {
+        return response.json();
+      })
       .then(data => {
+        this.files = new FormData();
+        this.albumTitle = "";
+        this.albumDescription = "";
         console.log(data);
       })
       .catch(error => {

@@ -59,7 +59,7 @@ export interface Comment
 {
     id: string;
     author: string;
-    creationDate: Date;
+    creationDate: Date | string;
     text: string;
 }
 

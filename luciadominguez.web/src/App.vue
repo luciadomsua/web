@@ -45,4 +45,12 @@ export default class App extends Vue {
     width: 100%;
   }
 }
+
+@media screen and (max-width: 479px) {
+  .wrapper {
+    .album-slider {
+      padding: 0 20px;
+    }
+  }
+}
 </style>

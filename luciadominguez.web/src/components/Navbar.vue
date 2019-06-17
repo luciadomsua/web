@@ -23,11 +23,11 @@
         <div class="navbar-start">
           <router-link to="/" class="navbar-item">Home</router-link>
 
-          <router-link to="/gallery" class="navbar-item">Gallery</router-link>
+          <router-link to="/gallery" class="navbar-item">Garería</router-link>
 
-          <router-link to="/about" class="navbar-item">About</router-link>
+          <router-link to="/about" class="navbar-item">Sobre mi</router-link>
 
-          <div class="navbar-item has-dropdown is-hoverable">
+          <!-- <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">More</a>
 
             <div class="navbar-dropdown">
@@ -37,7 +37,7 @@
               <hr class="navbar-divider">
               <a class="navbar-item">Report an issue</a>
             </div>
-          </div>
+          </div>-->
         </div>
 
         <!-- <div class="navbar-end">

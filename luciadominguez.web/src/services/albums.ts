@@ -16,7 +16,6 @@ export default class AlbumsService
         let response;
         try {
             response = await this._api.getAlbums();
-            console.log(response);
         } catch (error) {
             console.log(error);
         }

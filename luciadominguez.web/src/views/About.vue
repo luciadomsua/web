@@ -62,4 +62,19 @@ export default class About extends Vue {
     flex-flow: column;
   }
 }
+
+@media screen and (max-width: 479px) {
+  .about {
+    margin-top: 0;
+    flex-flow: column;
+
+    .picture {
+      width: 100%;
+    }
+
+    .content {
+      width: 100%;
+    }
+  }
+}
 </style>

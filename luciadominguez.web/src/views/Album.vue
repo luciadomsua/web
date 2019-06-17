@@ -53,7 +53,11 @@ export default class AlbumView extends Vue {
   }
 
   toggleComments(): void {
-    if (this.albumCover !== null) {
+    if (
+      this.albumCover !== null &&
+      this.albumCover.comments !== null &&
+      this.albumCover.comments.length > 0
+    ) {
       this.$router.push({
         name: "photo",
         params: { photoId: this.albumCover.id }
@@ -73,6 +77,7 @@ export default class AlbumView extends Vue {
   margin-top: 25px;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 
   .big-picture {
     width: 49%;
@@ -112,6 +117,20 @@ export default class AlbumView extends Vue {
   img {
     width: 100%;
     flex-grow: 1;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .album-view {
+    flex-flow: column;
+
+    .big-picture {
+      width: 100%;
+    }
+
+    .photo-grid {
+      width: 100%;
+    }
   }
 }
 </style>

@@ -25,8 +25,19 @@ export default class Home extends Vue {
     this.albums = this.$store.getters["albums/all"];
   }
 
-  mounted(): void {
-    
-  }
+  mounted(): void {}
 }
 </script>
+
+<style lang="scss" scoped>
+.home {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  #hero {
+    margin-bottom: 25px;
+  }
+}
+</style>

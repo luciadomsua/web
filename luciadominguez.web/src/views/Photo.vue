@@ -23,7 +23,6 @@ import Comments from "@/components/Comments.vue";
 })
 export default class PhotoView extends Vue {
   photo!: Photo;
-  photoId!: string;
 
   get comments(): Comment[] | null {
     return this.photo.comments;
@@ -34,14 +33,9 @@ export default class PhotoView extends Vue {
   }
 
   created(): void {
-    this.photoId = this.$route.params.photoId;
+    const photoId = this.$route.params.photoId;
+    this.photo = this.$store.getters["photos/byId"](photoId);
   }
-
-  beforeMount(): void {
-    this.photo = this.$store.getters["photos/byId"](this.photoId);
-  }
-
-  mounted(): void {}
 }
 </script>
 
@@ -66,6 +60,21 @@ export default class PhotoView extends Vue {
 
   .comments-view {
     width: 50%;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .photo-view {
+    margin-top: 0;
+    flex-flow: column;
+
+    .big-picture {
+      width: 100%;
+    }
+
+    .comments-view {
+      width: 100%;
+    }
   }
 }
 </style>

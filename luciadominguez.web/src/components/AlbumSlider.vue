@@ -36,7 +36,7 @@ export default class AlbumSlider extends Vue {
 <style lang="scss" scoped>
 h1 {
   text-align: left;
-  font-size: 32px;
+  font-size: 24px;
 }
 
 .slider-container {
@@ -51,6 +51,7 @@ h1 {
     align-items: center;
     justify-content: center;
     transform: rotate(-2deg);
+    max-width: 450px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
     &:nth-child(even) {

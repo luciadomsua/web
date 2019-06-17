@@ -1,8 +1,9 @@
 <template>
   <div class="comment">
-    <p>{{ comment.author }}</p>
-    <p>{{ comment.text }}</p>
-    <p>{{ comment.creationDate }}</p>
+    <p class="author">{{ comment.author }}</p>
+    <p class="text">{{ comment.text }}</p>
+    <p class="date">{{ comment.creationDate }}</p>
+    <p/>
   </div>
 </template>
 
@@ -37,6 +38,20 @@ export default class CommentComponent extends Vue {
 
   &:not(:last-child) {
     margin-bottom: 5px;
+  }
+
+  .author {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .text {
+    margin: 10px 0;
+  }
+
+  .date {
+    color: #747474;
+    font-size: 14px;
   }
 }
 </style>
