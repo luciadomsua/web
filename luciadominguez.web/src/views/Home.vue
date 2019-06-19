@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <Hero/>
-    <AlbumSlider v-for="album in albums" :key="album.Id" :album="album"/>
+    <div class="loader" v-if="!albums">Cargando...</div>
+    <AlbumSlider v-else v-for="album in albums" :key="album.Id" :album="album"/>
   </div>
 </template>
 
@@ -19,13 +20,9 @@ import { Album } from "../types";
   }
 })
 export default class Home extends Vue {
-  albums!: Album[];
-
-  created(): void {
-    this.albums = this.$store.getters["albums/all"];
+  get albums(): void {
+    return this.$store.getters["albums/all"];
   }
-
-  mounted(): void {}
 }
 </script>
 
