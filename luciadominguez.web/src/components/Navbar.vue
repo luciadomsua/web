@@ -7,6 +7,7 @@
         </router-link>
 
         <a
+          id="navBurgerToggle"
           role="button"
           class="navbar-burger burger"
           aria-label="menu"
@@ -22,34 +23,9 @@
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
           <router-link to="/" class="navbar-item">Home</router-link>
-
           <router-link to="/gallery" class="navbar-item">Garería</router-link>
-
           <router-link to="/about" class="navbar-item">Sobre mi</router-link>
-
-          <!-- <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">More</a>
-
-            <div class="navbar-dropdown">
-              <a class="navbar-item">About</a>
-              <a class="navbar-item">Jobs</a>
-              <a class="navbar-item">Contact</a>
-              <hr class="navbar-divider">
-              <a class="navbar-item">Report an issue</a>
-            </div>
-          </div>-->
         </div>
-
-        <!-- <div class="navbar-end">
-                    <div class="navbar-item">
-                        <div class="buttons">
-                            <a class="button is-primary">
-                                <strong>Sign up</strong>
-                            </a>
-                            <a class="button is-light">Log in</a>
-                        </div>
-                    </div>
-        </div>-->
       </div>
     </nav>
   </div>
@@ -60,7 +36,26 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class Navbar extends Vue {
-  mounted(): void {}
+  expanded: boolean = false;
+
+  mounted(): void {
+    const toggle = document.getElementById("navBurgerToggle");
+    const menu = document.getElementById("navbarBasicExample");
+
+    if (toggle === null || menu === null) {
+      return;
+    }
+
+    toggle.addEventListener("click", event => {
+      if (!this.expanded) {
+        menu.style.display = "block";
+        this.expanded = true;
+      } else {
+        menu.style.display = "none";
+        this.expanded = false;
+      }
+    });
+  }
 }
 </script>
 
@@ -77,6 +72,10 @@ export default class Navbar extends Vue {
   top: 0;
   width: 100%;
   z-index: 10;
+
+  .navbar-burger {
+    height: unset;
+  }
 
   nav {
     width: 100%;
